@@ -54,16 +54,16 @@ def writeini(name,custom,method):             # 自定义规则
                             inigroup += 'custom_proxy_group='+str(names[i])+'负载均衡`load-balance`('+str(groups[i])+')`http://www.gstatic.com/generate_204`500\n'
                             groupname += '[]'+str(names[i])+'负载均衡`'
 
-                    proxygroup =   'custom_proxy_group=🔰 节点选择`select'+groupname+'DIRECT\n\
-                                    custom_proxy_group=📲 电报吹水`select`[]🔰 节点选择`'+groupname+'\n\
-                                    custom_proxy_group=📹 YouTube`select`[]🔰 节点选择`'+groupname+'\n\
-                                    custom_proxy_group=🎥 NETFLIX`select`[]🔰 节点选择`'+groupname+'`(NF|解锁)\n\
-                                    custom_proxy_group=📺 巴哈姆特`select`[]🔰 节点选择`'+groupname+'\n\
-                                    custom_proxy_group=🌍 国外媒体`select`[]🔰 节点选择`'+groupname+'\n\
-                                    custom_proxy_group=🌏 国内媒体`select`DIRECT`[]🔰 节点选择\n\
-                                    custom_proxy_group=🍎 苹果服务`select`DIRECT`[]🔰 节点选择`\n\
+                    proxygroup =   'custom_proxy_group=🔰 节点选择`select'+groupname+'[]DIRECT\n\
+                                    custom_proxy_group=📲 电报吹水`select`[]🔰 节点选择`'+groupname+'[]DIRECT\n\
+                                    custom_proxy_group=📹 YouTube`select`[]🔰 节点选择`'+groupname+'[]DIRECT\n\
+                                    custom_proxy_group=🎥 NETFLIX`select`[]🔰 节点选择`'+groupname+'`(NF|解锁)`[]DIRECT\n\
+                                    custom_proxy_group=📺 巴哈姆特`select`[]🔰 节点选择`'+groupname+'[]DIRECT\n\
+                                    custom_proxy_group=🌍 国外媒体`select`[]🔰 节点选择`'+groupname+'[]DIRECT\n\
+                                    custom_proxy_group=🌏 国内媒体`select`[]DIRECT`[]🔰 节点选择\n\
+                                    custom_proxy_group=🍎 苹果服务`select`[]DIRECT`[]🔰 节点选择`\n\
                                     custom_proxy_group=🛑 全球拦截`select`[]REJECT`[]DIRECT\n\
-                                    custom_proxy_group=🐟 漏网之鱼`select`[]🔰 节点选择`DIRECT`'+groupname+'\n'
+                                    custom_proxy_group=🐟 漏网之鱼`select`[]🔰 节点选择`[]DIRECT`'+groupname+'\n'
 
                     inicustom[1] = proxygroup+inigroup                
                     with codecs.open("./config/pref.ini", "w",encoding = 'utf-8') as f:
