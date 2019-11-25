@@ -21,15 +21,16 @@ app = Flask(__name__)
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == "POST":
-        sub = request.form['left']
-        sub = sub.replace('\n','|').replace('\r','')
-        if sub.split('|')[-1]== '':
-            sub = sub[:-1]
+        s = request.form['left']
+        s = s.replace('\n','|').replace('\r','')
+        if s.split('|')[-1]== '':
+            s = s[:-1]
 
-        if '://' in sub:
+        if '://' in s:
             n=request.form['name']           
             c=request.form['custom']
             method = request.form['custommethod']
+            sub = urllib.parse.quote(s)
             name = urllib.parse.quote(n)
             custom = urllib.parse.quote(c)
             custommethod = urllib.parse.quote(method) 
@@ -48,14 +49,14 @@ def index():
 
             if tool == 'clash':
                     CustomGroupvmess = 'http://{ip}/api/clash?sublink={sub}&name={name}&gp={custom}&gpm={custommethod}'.format(ip=api.aff.apiip,sub=str(sub),name=str(name),custom=str(custom),custommethod=str(custommethod))
-                    return render_template('clash.html',sub = sub,custom=n+c+method,api=CustomGroupvmess)
+                    return render_template('clash.html',sub = s,custom=n+c+method,api=CustomGroupvmess)
 
             if tool == 'clashr':
                     CustomGroupvmess = 'http://{ip}/api/clashr?sublink={sub}&name={name}&gp={custom}&gpm={custommethod}'.format(ip=api.aff.apiip,sub=str(sub),name=str(name),custom=str(custom),custommethod=str(custommethod))
-                    return render_template('clashr.html',sub = sub,custom=n+c+method,api=CustomGroupvmess)
+                    return render_template('clashr.html',sub = s,custom=n+c+method,api=CustomGroupvmess)
             if tool == 'surge':
                     CustomGroupvmess = 'http://{ip}/api/surge?sublink={sub}&name={name}&gp={custom}&gpm={custommethod}'.format(ip=api.aff.apiip,sub=str(sub),name=str(name),custom=str(custom),custommethod=str(custommethod))
-                    return render_template('surge.html',sub = sub,custom=n+c+method,api=CustomGroupvmess)
+                    return render_template('surge.html',sub = s,custom=n+c+method,api=CustomGroupvmess)
 
             else:
                 return render_template('indexnew.html')    
