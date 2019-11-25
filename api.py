@@ -58,6 +58,12 @@ def index():
                     CustomGroupvmess = 'http://{ip}/api/surge?sublink={sub}&name={name}&gp={custom}&gpm={custommethod}'.format(ip=api.aff.apiip,sub=str(sub),name=str(name),custom=str(custom),custommethod=str(custommethod))
                     return render_template('surge.html',sub = s,custom=n+c+method,api=CustomGroupvmess)
 
+            if tool == 'mellow':
+                    CustomGroupvmess = 'http://{ip}/api/mellow?sublink={sub}&name={name}&gp={custom}&gpm={custommethod}'.format(ip=api.aff.apiip,sub=str(sub),name=str(name),custom=str(custom),custommethod=str(custommethod))
+                    return render_template('mellow.html',sub = s,custom=n+c+method,api=CustomGroupvmess)
+            if tool == 'surfboard':
+                    CustomGroupvmess = 'http://{ip}/api/surfboard?sublink={sub}&name={name}&gp={custom}&gpm={custommethod}'.format(ip=api.aff.apiip,sub=str(sub),name=str(name),custom=str(custom),custommethod=str(custommethod))
+                    return render_template('surfboard.html',sub = s,custom=n+c+method,api=CustomGroupvmess)
             else:
                 return render_template('indexnew.html')    
         else:
@@ -129,9 +135,56 @@ def surge():
         except Exception as e:
             custommethod = ''
         api.subconverter.writeini(name,custom,custommethod)
-        return api.subconverter.Retry_request('http://127.0.0.1:10010/surge?url='+sub)        
+        return api.subconverter.Retry_request('http://127.0.0.1:10010/surge?url='+sub+'&ver=4')        
     except Exception as e:
         return '检测调用格式是否正确'+ api.aff.aff
+
+@app.route('/api/mellow', methods=['GET', 'POST'])
+def mellow():
+    try:
+        sub = request.args.get('sublink')
+        try:
+            name = request.args.get('name')
+        except Exception as e:
+            name = ''
+
+        try:
+            custom = request.args.get('gp')
+        except Exception as e:
+            custom = ''
+
+        try:
+            custommethod = request.args.get('gpm')
+        except Exception as e:
+            custommethod = ''
+        api.subconverter.writeini(name,custom,custommethod)
+        return api.subconverter.Retry_request('http://127.0.0.1:10010/mellow?url='+sub)        
+    except Exception as e:
+        return '检测调用格式是否正确'+ api.aff.aff
+
+@app.route('/api/surfboard', methods=['GET', 'POST'])
+def surfboard():
+    try:
+        sub = request.args.get('sublink')
+        try:
+            name = request.args.get('name')
+        except Exception as e:
+            name = ''
+
+        try:
+            custom = request.args.get('gp')
+        except Exception as e:
+            custom = ''
+
+        try:
+            custommethod = request.args.get('gpm')
+        except Exception as e:
+            custommethod = ''
+        api.subconverter.writeini(name,custom,custommethod)
+        return api.subconverter.Retry_request('http://127.0.0.1:10010/surfboard?url='+sub)        
+    except Exception as e:
+        return '检测调用格式是否正确'+ api.aff.aff
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0',debug=False,port=10086)            #自定义端口
