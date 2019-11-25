@@ -57,7 +57,6 @@ def index():
                     CustomGroupvmess = 'http://{ip}/api/surge?sublink={sub}&name={name}&gp={custom}&gpm={custommethod}'.format(ip=api.aff.apiip,sub=str(sub),name=str(name),custom=str(custom),custommethod=str(custommethod))
                     return render_template('surge.html',sub = sub,custom=n+c+method,api=CustomGroupvmess)
 
-
             else:
                 return render_template('indexnew.html')    
         else:
