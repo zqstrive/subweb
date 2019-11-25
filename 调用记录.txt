@@ -1,0 +1,13 @@
+http://stcapi.stcnat.com:10010/vmess/customgroup?sublink=https://stc-dns.com/link/jSkLx7LgGRRfgSFw?mu=2&custom=%40%E9%A6%99%E6%B8%AF%40%E9%A6%99%E6%B8%AF%40%E7%BE%8E%E5%9B%BD%40%E7%8B%AE%E5%9F%8E%40%E5%8F%B0%E6%B9%BE&custommethod=%40fallback%40select%40fallback%40fallback%40fallback&dns=no&emoji=yes
+http://127.0.0.1:10086/api?sublink=https%3A//stc-dns.com/link/jSkLx7LgGRRfgSFw%3Fmu%3D2&name=@测试1@测试2&gp=@美国|台湾@日本&gpm=@@
+http://127.0.0.1:10086/api?sublink=https%3A//stc-dns.com/link/jSkLx7LgGRRfgSFw%3Fmu%3D2
+http://173.242.117.210:10010/clash?url=https%3A//stc-dns.com/link/jSkLx7LgGRRfgSFw%3Fmu%3D2
+http://173.242.117.210:10086/api?sublink=https%3A//stc-dns.com/link/jSkLx7LgGRRfgSFw%3Fmu%3D2
+http://173.242.117.210:10086/api?sublink=https%3A//stc-dns.com/link/jSkLx7LgGRRfgSFw%3Fmu%3D2&name=@测试1@测试2&gp=@美国|台湾@日本&gpm=@@
+
+
+http://127.0.0.1:10086/api/clash?sublink=https%3A//stc-dns.com/link/jSkLx7LgGRRfgSFw%3Fmu%3D2&name=@测试1@测试2@测试3@测试4&gp=@美国|台湾@日本@香港@台湾&gpm=@sl@lb@fb@ut
+http://127.0.0.1:10086/api/clashr?sublink=https%3A//stc-dns.com/link/jSkLx7LgGRRfgSFw&name=@测试1@测试2@测试3@测试4&gp=@美|湾@日@香港@湾&gpm=@sl@lb@fb@ut
+http://173.242.117.210:10086/api?sublink=https%3A//stc-dns.com/link/jSkLx7LgGRRfgSFw%3Fmu%3D2&name=@测试1@测试2@测试3@测试4&gp=@美国|台湾@日本@香港@台湾&gpm=@sl@lb@fb@ut
+
+http://stcapi2.stcnat.com:10086/api/clashr?sublink=https://stc-dns.com/link/jSkLx7LgGRRfgSFw?mu=2|https://stc-dns.com/link/jSkLx7LgGRRfgSFw&name=%40%E6%B5%8B%E8%AF%951%40%E6%B5%8B%E8%AF%952%40%E6%B5%8B%E8%AF%953&gp=%40%E9%A6%99%E6%B8%AF%40%E7%BE%8E%E5%9B%BD%40%E5%8F%B0%E6%B9%BE&gpm=%40sl%40fb%40ut
