@@ -64,6 +64,9 @@ def index():
             if tool == 'surfboard':
                     CustomGroupvmess = 'http://{ip}/api/surfboard?sublink={sub}&name={name}&gp={custom}&gpm={custommethod}'.format(ip=api.aff.apiip,sub=str(sub),name=str(name),custom=str(custom),custommethod=str(custommethod))
                     return render_template('surfboard.html',sub = s,custom=n+c+method,api=CustomGroupvmess)
+            if tool == 'qxnode':
+                    CustomGroupvmess = 'http://{ip}/api/qxnode?sublink={sub}&name={name}&gp={custom}&gpm={custommethod}'.format(ip=api.aff.apiip,sub=str(sub),name=str(name),custom=str(custom),custommethod=str(custommethod))
+                    return render_template('qxnode.html',sub = s,custom="QuanX Node List 不支持客制化 ",api=CustomGroupvmess)            
             else:
                 return render_template('indexnew.html')    
         else:
@@ -89,7 +92,7 @@ def clashapigroup():
         except Exception as e:
             custommethod = ''
         api.subconverter.writeini(name,custom,custommethod)
-        return api.subconverter.Retry_request('http://127.0.0.1:10010/clash?url='+sub)        
+        return api.subconverter.Retry_request('http://127.0.0.1:10010/sub?target=clash&url='+sub)        
     except Exception as e:
         return '检测调用格式是否正确'+ api.aff.aff
 
@@ -112,7 +115,7 @@ def clashr():
         except Exception as e:
             custommethod = ''
         api.subconverter.writeini(name,custom,custommethod)
-        return api.subconverter.Retry_request('http://127.0.0.1:10010/clashr?url='+sub)        
+        return api.subconverter.Retry_request('http://127.0.0.1:10010/sub?target=clashr&url='+sub)        
     except Exception as e:
         return '检测调用格式是否正确'+ api.aff.aff
 
@@ -135,7 +138,33 @@ def surge():
         except Exception as e:
             custommethod = ''
         api.subconverter.writeini(name,custom,custommethod)
-        return api.subconverter.Retry_request('http://127.0.0.1:10010/surge?url='+sub+'&ver=4')        
+        #return api.subconverter.Retry_request('http://127.0.0.1:10010/surge?url='+sub+'&ver=4')     
+        return api.subconverter.Retry_request('http://127.0.0.1:10010/sub?target=surge&url='+sub+'&ver=4')        
+   
+    except Exception as e:
+        return '检测调用格式是否正确'+ api.aff.aff
+
+@app.route('/api/qxnode', methods=['GET', 'POST'])
+def qxnode():
+    try:
+        sub = request.args.get('sublink')
+        try:
+            name = request.args.get('name')
+        except Exception as e:
+            name = ''
+
+        try:
+            custom = request.args.get('gp')
+        except Exception as e:
+            custom = ''
+
+        try:
+            custommethod = request.args.get('gpm')
+        except Exception as e:
+            custommethod = ''
+        api.subconverter.writeini(name,custom,custommethod)
+        return api.subconverter.Retry_request('http://127.0.0.1:10010/sub?target=quanx&url='+sub)        
+     
     except Exception as e:
         return '检测调用格式是否正确'+ api.aff.aff
 
@@ -181,7 +210,7 @@ def surfboard():
         except Exception as e:
             custommethod = ''
         api.subconverter.writeini(name,custom,custommethod)
-        return api.subconverter.Retry_request('http://127.0.0.1:10010/surfboard?url='+sub)        
+        return api.subconverter.Retry_request('http://127.0.0.1:10010/sub?target=surfboard&url='+sub)        
     except Exception as e:
         return '检测调用格式是否正确'+ api.aff.aff
 

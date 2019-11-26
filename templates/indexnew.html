@@ -25,11 +25,10 @@
                 <div id="proxy_tool" onchange="selChange()">
                     <div class="autobar">
 
-
                         <div class="pretty p-icon p-round p-plain p-smooth">
                             <input type="radio" name="tool" value="clash" >
                             <div class="state p-success-o">
-                                    <i class="icon mdi mdi-transition-masked"></i>
+                                        <i class="icon mdi mdi-transition-masked"></i>
                                 <label>Clash</label>
                             </div>
                         </div>  
@@ -66,14 +65,21 @@
                             </div>
                         </div>                        
 
+                        <div class="pretty p-icon p-round p-plain p-smooth">
+                                <input type="radio" name="tool" value="qxnode">
+                                <div class="state p-success-o">
+                                        <i class="icon mdi mdi-transition-masked"></i>
+                                    <label>QuanX-Node</label>
+                                </div>
+                            </div>   
 
-                    </div>
+                    </div>                    
                 </div>
             </div> 
                   
             <div class="card" align="center">
                 <h2>🤡 在下方填入通用订阅地址，多个请换行输入</h2>
-                <textarea name = "left" cols="70" rows="5" id="custom" placeholder="填写订阅地址" >{{ sub  }}</textarea>
+                <textarea align="center" name = "left" cols="70" rows="5" id="custom" placeholder="填写订阅地址" >{{ sub  }}</textarea>
                 <input type="submit" value = "点击生成吧""/> <br/><br/> 
             </div>
 
