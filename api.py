@@ -20,58 +20,63 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    if request.method == "POST":
-        s = request.form['left']
-        s = s.replace('\n','|').replace('\r','')
-        if s.split('|')[-1]== '':
-            s = s[:-1]
+    try:
+        if request.method == "POST":
+            if request.form['submit'] == '点击添加节点分组':            
+                ori1 = request.form['custom1']
+                ori2 = request.form['custom2']
+                ori3 = request.form['custom3']
+                add1 = '@'+ request.form['firstname']
+                add2 = '@'+request.form['lastname']
+                add3='@'+str(request.values.get('method'))
+                if add1 == '@':
+                    return '未填写名称'                
+                if add2 == '@':
+                    return '未填写节点'
+                return render_template('index.html',custom1=ori1+add1,custom2=ori2+add2,custom3=ori3+add3)    
+            s = request.form['left']
+            s = s.replace('\n','|').replace('\r','')
+            if s.split('|')[-1]== '':
+                s = s[:-1]        
+            if '://' in s:
+                n=request.form['custom1']           
+                c=request.form['custom2']
+                method = request.form['custom3']
+                sub = urllib.parse.quote(s)
+                name = urllib.parse.quote(n)
+                custom = urllib.parse.quote(c)
+                custommethod = urllib.parse.quote(method) 
+                try:
+                    tool=str(request.values.get('tool'))
+                except :
+                    pass
+                if tool == 'clash':
+                        CustomGroupvmess = 'http://{ip}/api/clash?sublink={sub}&name={name}&gp={custom}&gpm={custommethod}'.format(ip=api.aff.apiip,sub=str(sub),name=str(name),custom=str(custom),custommethod=str(custommethod))
+                        return render_template('clash.html',sub = s,custom=n+c+method,api=CustomGroupvmess)
 
-        if '://' in s:
-            n=request.form['name']           
-            c=request.form['custom']
-            method = request.form['custommethod']
-            sub = urllib.parse.quote(s)
-            name = urllib.parse.quote(n)
-            custom = urllib.parse.quote(c)
-            custommethod = urllib.parse.quote(method) 
+                if tool == 'clashr':
+                        CustomGroupvmess = 'http://{ip}/api/clashr?sublink={sub}&name={name}&gp={custom}&gpm={custommethod}'.format(ip=api.aff.apiip,sub=str(sub),name=str(name),custom=str(custom),custommethod=str(custommethod))
+                        return render_template('clashr.html',sub = s,custom=n+c+method,api=CustomGroupvmess)
+                if tool == 'surge':
+                        CustomGroupvmess = 'http://{ip}/api/surge?sublink={sub}&name={name}&gp={custom}&gpm={custommethod}'.format(ip=api.aff.apiip,sub=str(sub),name=str(name),custom=str(custom),custommethod=str(custommethod))
+                        return render_template('surge.html',sub = s,custom=n+c+method,api=CustomGroupvmess)
 
-            len1 = len(str(n).split('@'))
-            len2 = len(str(c).split('@'))
-            len3 = len(str(method).split('@'))
-
-            if len1 != len2 or len1 != len3:
-                return('检查分组是否一一对应')
-
-            try:
-                tool=str(request.values.get('tool'))
-            except :
-                pass
-
-            if tool == 'clash':
-                    CustomGroupvmess = 'http://{ip}/api/clash?sublink={sub}&name={name}&gp={custom}&gpm={custommethod}'.format(ip=api.aff.apiip,sub=str(sub),name=str(name),custom=str(custom),custommethod=str(custommethod))
-                    return render_template('clash.html',sub = s,custom=n+c+method,api=CustomGroupvmess)
-
-            if tool == 'clashr':
-                    CustomGroupvmess = 'http://{ip}/api/clashr?sublink={sub}&name={name}&gp={custom}&gpm={custommethod}'.format(ip=api.aff.apiip,sub=str(sub),name=str(name),custom=str(custom),custommethod=str(custommethod))
-                    return render_template('clashr.html',sub = s,custom=n+c+method,api=CustomGroupvmess)
-            if tool == 'surge':
-                    CustomGroupvmess = 'http://{ip}/api/surge?sublink={sub}&name={name}&gp={custom}&gpm={custommethod}'.format(ip=api.aff.apiip,sub=str(sub),name=str(name),custom=str(custom),custommethod=str(custommethod))
-                    return render_template('surge.html',sub = s,custom=n+c+method,api=CustomGroupvmess)
-
-            if tool == 'mellow':
-                    CustomGroupvmess = 'http://{ip}/api/mellow?sublink={sub}&name={name}&gp={custom}&gpm={custommethod}'.format(ip=api.aff.apiip,sub=str(sub),name=str(name),custom=str(custom),custommethod=str(custommethod))
-                    return render_template('mellow.html',sub = s,custom=n+c+method,api=CustomGroupvmess)
-            if tool == 'surfboard':
-                    CustomGroupvmess = 'http://{ip}/api/surfboard?sublink={sub}&name={name}&gp={custom}&gpm={custommethod}'.format(ip=api.aff.apiip,sub=str(sub),name=str(name),custom=str(custom),custommethod=str(custommethod))
-                    return render_template('surfboard.html',sub = s,custom=n+c+method,api=CustomGroupvmess)
-            if tool == 'qxnode':
-                    CustomGroupvmess = 'http://{ip}/api/qxnode?sublink={sub}&name={name}&gp={custom}&gpm={custommethod}'.format(ip=api.aff.apiip,sub=str(sub),name=str(name),custom=str(custom),custommethod=str(custommethod))
-                    return render_template('qxnode.html',sub = s,custom="QuanX Node List 不支持客制化 ",api=CustomGroupvmess)            
+                if tool == 'mellow':
+                        CustomGroupvmess = 'http://{ip}/api/mellow?sublink={sub}&name={name}&gp={custom}&gpm={custommethod}'.format(ip=api.aff.apiip,sub=str(sub),name=str(name),custom=str(custom),custommethod=str(custommethod))
+                        return render_template('mellow.html',sub = s,custom=n+c+method,api=CustomGroupvmess)
+                if tool == 'surfboard':
+                        CustomGroupvmess = 'http://{ip}/api/surfboard?sublink={sub}&name={name}&gp={custom}&gpm={custommethod}'.format(ip=api.aff.apiip,sub=str(sub),name=str(name),custom=str(custom),custommethod=str(custommethod))
+                        return render_template('surfboard.html',sub = s,custom=n+c+method,api=CustomGroupvmess)
+                if tool == 'qxnode':
+                        CustomGroupvmess = 'http://{ip}/api/qxnode?sublink={sub}&name={name}&gp={custom}&gpm={custommethod}'.format(ip=api.aff.apiip,sub=str(sub),name=str(name),custom=str(custom),custommethod=str(custommethod))
+                        return render_template('qxnode.html',sub = s,custom="QuanX Node List 不支持客制化 ",api=CustomGroupvmess)            
+                else:
+                    return render_template('index.html')    
             else:
-                return render_template('indexnew.html')    
-        else:
-            return '订阅不规范'
-    return render_template('indexnew.html')
+                return '订阅不规范'
+        return render_template('index.html')
+    except Exception as e:
+        return e
 
 @app.route('/api/clash', methods=['GET', 'POST'])
 def clashapigroup():

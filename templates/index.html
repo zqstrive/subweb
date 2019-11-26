@@ -1,0 +1,171 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>❤️ Rule Generator ️️❤️</title>
+    <link href="/static/css/style.min.css" media="all" rel="stylesheet" type="text/css" />
+</head>
+<style>
+    .dropbtn {
+        background-color: #4CAF50;
+        color: white;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+    }
+    
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+    
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        right: 0;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    } 
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+    .dropdown-content a:hover {background-color: #f1f1f1}
+    
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+    
+    .dropdown:hover .dropbtn {
+        background-color: #3e8e41;
+    }
+    </style>
+<body>
+
+    <div class="container">
+            <header>
+                <h1>🚀 STC Api Rule Generator 🚁</h1>
+            </header>
+
+            <!-- Proxy tools -->
+        <form method="POST" name = "form1">
+
+                <div class="card" align="center">
+                        <h2>🤡 0.小白忽略，节点客制化</h2>
+                        <label>已设置的名称：</label>
+                        <textarea align="center" name = "custom1" cols="70" rows="1" id="custom" placeholder="" >{{ custom1  }}</textarea>
+                        <label>已设置的节点：</label>
+                        <textarea align="center" name = "custom2" cols="70" rows="1" id="custom" placeholder="" >{{ custom2  }}</textarea>
+                        <label>已设置的模式：</label>
+                        <textarea align="center" name = "custom3" cols="70" rows="1" id="custom" placeholder="" >{{ custom3  }}</textarea>
+                        设置名称:                                                 
+                        <input type="text" name="firstname" size =30>
+                        <br/>
+                        <br/>
+                        设置节点:
+                        <input type="text" name="lastname" size = 30>                
+                        <br/> 
+                        <br/>                                                               
+                                    <input type="radio" name="method" value="sl" checked>
+                                    <label>手动选择</label>                            
+                                    <input type="radio" name="method" value="fb" >
+                                    <label>故障切换</label>
+                                    <input type="radio" name="method" value="ut" >
+                                    <label>延迟最低</label>                            
+                                    <input type="radio" name="method" value="lb" >
+                                    <label>负载均衡</label>   
+                        <br/>   
+                        <br/>                                                       
+                        <input type="submit" class="button" name= 'submit' align="center" value = "点击添加节点分组""/>
+                </div>
+
+            <div class="card" align="center">
+                <h2>🤡 1.在下方填入通用订阅地址，多个请换行输入</h2>
+                <textarea align="center" name = "left" cols="70" rows="5" id="custom" placeholder="填写订阅地址" >{{ sub  }}</textarea>                        
+            </div>
+
+            <div class="card" align="center">
+                <h2> 🤔 2.你用什么嘞？</h2>
+                <div id="proxy_tool" onchange="selChange()">
+                    <div class="autobar">
+
+                        <div class="pretty p-icon p-round p-plain p-smooth">
+                            <input type="radio" name="tool" value="clash" >
+                            <div class="state p-success-o">
+                                        <i class="icon mdi mdi-transition-masked"></i>
+                                <label>Clash</label>
+                            </div>
+                        </div>  
+
+                        <div class="pretty p-icon p-round p-plain p-smooth">
+                                <input type="radio" name="tool" value="clashr"checked>
+                                <div class="state p-success-o">
+                                        <i class="icon mdi mdi-transition-masked"></i>
+                                    <label>ClashR</label>
+                                </div>
+                        </div>
+
+                        <div class="pretty p-icon p-round p-plain p-smooth">
+                            <input type="radio" name="tool" value="surge">
+                            <div class="state p-success-o">
+                                    <i class="icon mdi mdi-transition-masked"></i>
+                                <label>Surge</label>
+                            </div>
+                        </div>
+
+                        <div class="pretty p-icon p-round p-plain p-smooth">
+                            <input type="radio" name="tool" value="mellow" disabled>
+                            <div class="state p-success-o">
+                                    <i class="icon mdi mdi-transition-masked"></i>
+                                <label>Mellow</label>
+                            </div>
+                        </div>
+
+                        <div class="pretty p-icon p-round p-plain p-smooth">
+                            <input type="radio" name="tool" value="surfboard">
+                            <div class="state p-success-o">
+                                    <i class="icon mdi mdi-transition-masked"></i>
+                                <label>SurfBoard</label>
+                            </div>
+                        </div>                        
+
+                        <div class="pretty p-icon p-round p-plain p-smooth">
+                                <input type="radio" name="tool" value="qxnode">
+                                <div class="state p-success-o">
+                                        <i class="icon mdi mdi-transition-masked"></i>
+                                    <label>QuanX-Node</label>
+                                </div>
+                            </div>   
+
+                    </div>                    
+                </div>
+            </div> 
+
+            <div class="card" align="center">
+                    <h2>🤡 3.一切准备就绪了</h2>
+                    <input type="submit" class="button button--inline" name= 'submit' value = "🔥 点击生成托管地址吧 🍩""/>                         
+                </div> 
+
+             
+
+
+    
+        </form>  
+         
+
+    <footer>
+        <p> &copy;<a href="https://weibo.com/hackl0us">@Hackl0us</a>.<a href="https://weibo.com/haxck"> 美工</a>.<a href="https://github.com/tindy2013/subconverter"> API源码</a>.<a>@NicoNewBeee</a></p>
+    </footer>
+    </div>
+</body>
+
+</html>
