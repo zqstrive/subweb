@@ -26,9 +26,9 @@ def index():
                 ori1 = request.form['custom1']
                 ori2 = request.form['custom2']
                 ori3 = request.form['custom3']
-                add1 = '@'+ request.form['firstname']
-                add2 = '@'+request.form['lastname']
-                add3='@'+str(request.values.get('method'))
+                add1 = '@'+ request.form['firstname'].replace('@','')
+                add2 = '@'+request.form['lastname'].replace('@','')
+                add3='@'+  request.values.get('method').replace('@','')
                 if add1 == '@':
                     return '未填写名称'                
                 if add2 == '@':
@@ -42,6 +42,14 @@ def index():
                 n=request.form['custom1']           
                 c=request.form['custom2']
                 method = request.form['custom3']
+
+                len1 = len(str(n).split('@'))
+                len2 = len(str(c).split('@'))
+                len3 = len(str(method).split('@'))
+
+                if len1 != len2 or len1 != len3 or len2 != len3:
+                    return('检查分组是否一一对应')
+                    
                 sub = urllib.parse.quote(s)
                 name = urllib.parse.quote(n)
                 custom = urllib.parse.quote(c)
