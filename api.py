@@ -78,6 +78,12 @@ def index():
                 if tool == 'qxnode':
                         CustomGroupvmess = 'http://{ip}/api/qxnode?sublink={sub}&name={name}&gp={custom}&gpm={custommethod}'.format(ip=api.aff.apiip,sub=str(sub),name=str(name),custom=str(custom),custommethod=str(custommethod))
                         return render_template('qxnode.html',sub = s,custom="QuanX Node List 不支持客制化 ",api=CustomGroupvmess)            
+                if tool == 'surnode':
+                        CustomGroupvmess = 'http://{ip}/api/surnode?sublink={sub}&name={name}&gp={custom}&gpm={custommethod}&type=v2'.format(ip=api.aff.apiip,sub=str(sub),name=str(name),custom=str(custom),custommethod=str(custommethod))
+                        return render_template('surgenode.html',sub = s,custom="Surge Node List 不支持客制化 ",api=CustomGroupvmess)                   
+                if tool == 'surnodess':
+                        CustomGroupvmess = 'http://{ip}/api/surnode?sublink={sub}&name={name}&gp={custom}&gpm={custommethod}&type=ss'.format(ip=api.aff.apiip,sub=str(sub),name=str(name),custom=str(custom),custommethod=str(custommethod))
+                        return render_template('surgenode.html',sub = s,custom="Surge Node List 不支持客制化 ",api=CustomGroupvmess)                  
                 else:
                     return render_template('index.html')    
             else:
@@ -227,6 +233,31 @@ def surfboard():
     except Exception as e:
         return '检测调用格式是否正确'+ api.aff.aff
 
+@app.route('/api/surnode', methods=['GET', 'POST'])
+def surnode():
+    try:
+        sub = request.args.get('sublink')
+        try:
+            name = request.args.get('name')
+        except Exception as e:
+            name = ''
+        try:
+            custom = request.args.get('gp')
+        except Exception as e:
+            custom = ''
+        try:
+            custommethod = request.args.get('gpm')
+        except Exception as e:
+            custommethod = ''
+        try:
+            surgetype = request.args.get('type')
+        except Exception as e:
+            surgetype = 'ss'         
+        
+        return api.subconverter.Retry_request('https://dove.589669.xyz/Mix2Surge?type={surgetype}&sub='.format(surgetype=surgetype)+sub) 
+      
+    except Exception as e:
+        return '检测调用格式是否正确'+ api.aff.aff
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0',debug=False,port=10086)            #自定义端口
