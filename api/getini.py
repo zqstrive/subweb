@@ -23,7 +23,28 @@ def Retry_request(url): #远程下载
 def writeini(url):             # 自定义规则
     
     try:
-        inicustom = Retry_request(url)               
+        inicustom = Retry_request(url)   
+        inicustom = inicustom.split('[emojis]')[1].split('[server]')[0]
+        inicustom = '[common]\n\
+api_mode=false\n\
+default_url=\n\
+clash_rule_base=simple_base.yml\n\
+surge_rule_base=surge.conf\n\
+surfboard_rule_base=surfboard.conf\n\
+mellow_rule_base=mellow.conf\n\
+proxy_ruleset=SYSTEM\n\
+proxy_subscription=NONE\n\
+append_proxy_type=false\n\
+rename_node=\(?((x|X)?(\d+)(\.?\d+)?)((\s?倍率?)|(x|X))\)?@$1x\n\
+[managed_config]\n\
+write_managed_config=true\n\
+managed_config_prefix=http://127.0.0.1:25500\n'+inicustom+'[server]\n\
+listen=0.0.0.0\n\
+port=10010\n\
+[advanced]\n\
+print_debug_info=false\n\
+max_pending_connections=10240\n\
+max_concurrent_threads=1\n'         
         with codecs.open("./config/pref.ini", "w",encoding = 'utf-8') as f:
             f.writelines(inicustom)                         
     except Exception as e:
