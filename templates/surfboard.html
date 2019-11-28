@@ -26,13 +26,16 @@
 
             <div class="card" align="center">
                 <h2>🤡 你的客制化需求为</h2>
-                <textarea name = "custom" cols="70" rows="5" id="custom" placeholder="未填写" >{{ custom  }}</textarea>
+                <textarea name = "custom" cols="70" rows="5" id="custom" placeholder="未填写,TindyX 提供的托管地址暂时不支持节点客制化">{{ custom  }}</textarea>
             </div>
 
             <div class="card" align="center">
                 <h2>🤖 surfboard分组托管地址为</h2>
-                <textarea name = "clash" cols="70" rows="5" id="end" readonly="readonly" placeholder="这是生成的托管地址"   >{{ api }}</textarea>
-                <button  id="btnCopy">点击复制吧</button>     
+                <h3>STC 提供的托管地址为</h3>
+                <textarea name = "clash" cols="70" rows="5" id="end"  placeholder="这是生成的托管地址"   >{{ api }}</textarea>
+                <h3>TindyX 提供的托管地址为（客制化暂时不起作用）</h3>
+                <textarea name = "clash" cols="70" rows="5" id="end"  placeholder="这是生成的托管地址"   >{{ api2 }}</textarea>                
+                <button  id="btnCopy">点击复制吧</button>    
             </div> 
     <footer>
         <p> &copy;<a href="https://weibo.com/hackl0us">@Hackl0us</a>.<a href="https://weibo.com/haxck"> 美工</a>.<a href="https://github.com/tindy2013/subconverter"> API源码</a>.<a>@NicoNewBeee</a></p>

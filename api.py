@@ -60,30 +60,34 @@ def index():
                     pass
                 if tool == 'clash':
                         CustomGroupvmess = 'http://{ip}/api/clash?sublink={sub}&name={name}&gp={custom}&gpm={custommethod}'.format(ip=api.aff.apiip,sub=str(sub),name=str(name),custom=str(custom),custommethod=str(custommethod))
-                        return render_template('clash.html',sub = s,custom=n+c+method,api=CustomGroupvmess)
+                        api2 = 'https://gfwsb.114514.best/sub?target=clash&url={sub}'.format(sub=str(sub)) 
+                        return render_template('clash.html',sub = s,custom=n+c+method,api=CustomGroupvmess,api2=api2)
 
                 if tool == 'clashr':
                         CustomGroupvmess = 'http://{ip}/api/clashr?sublink={sub}&name={name}&gp={custom}&gpm={custommethod}'.format(ip=api.aff.apiip,sub=str(sub),name=str(name),custom=str(custom),custommethod=str(custommethod))
-                        return render_template('clashr.html',sub = s,custom=n+c+method,api=CustomGroupvmess)
+                        api2 = 'https://gfwsb.114514.best/sub?target=clashr&url={sub}'.format(sub=str(sub)) 
+                        return render_template('clashr.html',sub = s,custom=n+c+method,api=CustomGroupvmess,api2=api2)
                 if tool == 'surge':
                         CustomGroupvmess = 'http://{ip}/api/surge?sublink={sub}&name={name}&gp={custom}&gpm={custommethod}'.format(ip=api.aff.apiip,sub=str(sub),name=str(name),custom=str(custom),custommethod=str(custommethod))
-                        return render_template('surge.html',sub = s,custom=n+c+method,api=CustomGroupvmess)
+                        api2 = 'https://gfwsb.114514.best/sub?target=surge&url={sub}&ver=4'.format(sub=str(sub))
+                        return render_template('surge.html',sub = s,custom=n+c+method,api=CustomGroupvmess,api2=api2)
 
                 if tool == 'mellow':
                         CustomGroupvmess = 'http://{ip}/api/mellow?sublink={sub}&name={name}&gp={custom}&gpm={custommethod}'.format(ip=api.aff.apiip,sub=str(sub),name=str(name),custom=str(custom),custommethod=str(custommethod))
-                        return render_template('mellow.html',sub = s,custom=n+c+method,api=CustomGroupvmess)
+                        api2 = 'https://gfwsb.114514.best/sub?target=mellow&url={sub}'.format(sub=str(sub)) 
+                        return render_template('mellow.html',sub = s,custom=n+c+method,api=CustomGroupvmess,api2=api2)
                 if tool == 'surfboard':
                         CustomGroupvmess = 'http://{ip}/api/surfboard?sublink={sub}&name={name}&gp={custom}&gpm={custommethod}'.format(ip=api.aff.apiip,sub=str(sub),name=str(name),custom=str(custom),custommethod=str(custommethod))
-                        return render_template('surfboard.html',sub = s,custom=n+c+method,api=CustomGroupvmess)
+                        api2 = 'https://gfwsb.114514.best/sub?target=surfboard&url={sub}'.format(sub=str(sub))                        
+                        return render_template('surfboard.html',sub = s,custom=n+c+method,api=CustomGroupvmess,api2=api2)
                 if tool == 'qxnode':
-                        CustomGroupvmess = 'http://{ip}/api/qxnode?sublink={sub}&name={name}&gp={custom}&gpm={custommethod}'.format(ip=api.aff.apiip,sub=str(sub),name=str(name),custom=str(custom),custommethod=str(custommethod))
-                        return render_template('qxnode.html',sub = s,custom="QuanX Node List 不支持客制化 ",api=CustomGroupvmess)            
+                        CustomGroupvmess = 'http://{ip}/api/qxnode?sublink={sub}'.format(ip=api.aff.apiip,sub=str(sub),name=str(name),custom=str(custom),custommethod=str(custommethod))
+                        api2 = 'https://gfwsb.114514.best/sub?target=quanx&url={sub}'.format(sub=str(sub))
+                        return render_template('qxnode.html',sub = s,custom="QuanX Node List 不支持客制化 ",api=CustomGroupvmess,api2=api2)            
                 if tool == 'surnode':
-                        CustomGroupvmess = 'http://{ip}/api/surnode?sublink={sub}&name={name}&gp={custom}&gpm={custommethod}&type=v2'.format(ip=api.aff.apiip,sub=str(sub),name=str(name),custom=str(custom),custommethod=str(custommethod))
-                        return render_template('surgenode.html',sub = s,custom="Surge Node List 不支持客制化 ",api=CustomGroupvmess)                   
-                if tool == 'surnodess':
-                        CustomGroupvmess = 'http://{ip}/api/surnode?sublink={sub}&name={name}&gp={custom}&gpm={custommethod}&type=ss'.format(ip=api.aff.apiip,sub=str(sub),name=str(name),custom=str(custom),custommethod=str(custommethod))
-                        return render_template('surgenode.html',sub = s,custom="Surge Node List 不支持客制化 ",api=CustomGroupvmess)                  
+                        CustomGroupvmess = 'http://{ip}/api/surnode?sublink={sub}&ver=4&udp=true&tfo=true'.format(ip=api.aff.apiip,sub=str(sub))
+                        api2 = 'https://gfwsb.114514.best/sub?target=surge&url={sub}&ver=4&list=true&udp=true&tfo=true'.format(sub=str(sub))
+                        return render_template('surgenode.html',sub = s,custom="默认为surge4，参数为为ver=4。默认udp=true,tfo=true",api=CustomGroupvmess,api2=api2)                                  
                 else:
                     return render_template('index.html')    
             else:
@@ -237,24 +241,16 @@ def surfboard():
 def surnode():
     try:
         sub = request.args.get('sublink')
+        ver = request.args.get('ver')
         try:
-            name = request.args.get('name')
+            udp = request.args.get('udp')
         except Exception as e:
-            name = ''
+            udp = 'true'
         try:
-            custom = request.args.get('gp')
+            tfo = request.args.get('tfo')
         except Exception as e:
-            custom = ''
-        try:
-            custommethod = request.args.get('gpm')
-        except Exception as e:
-            custommethod = ''
-        try:
-            surgetype = request.args.get('type')
-        except Exception as e:
-            surgetype = 'ss'         
-        
-        return api.subconverter.Retry_request('https://dove.589669.xyz/Mix2Surge?type={surgetype}&sub='.format(surgetype=surgetype)+sub) 
+            tfo = 'true'               
+        return api.subconverter.Retry_request('http://127.0.0.1:10010/sub?target=surge&url={sub}&ver={ver}&list=true&udp={udp}&tfo={tfo}'.format(sub=sub,ver=ver,udp=udp,tfo=tfo))  
       
     except Exception as e:
         return '检测调用格式是否正确'+ api.aff.aff
