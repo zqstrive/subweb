@@ -12,6 +12,7 @@ import time
 import codecs
 import api.subconverter
 import api.aff
+import api.getini
 
 from flask import Flask,render_template,request
 urllib3.disable_warnings()
@@ -255,5 +256,16 @@ def surnode():
     except Exception as e:
         return '检测调用格式是否正确'+ api.aff.aff
 
+@app.route('/api/ini', methods=['GET', 'POST'])
+def ini():
+    try:
+        sub = request.args.get('sublink')
+        tool = request.args.get('tool')
+        ini = request.args.get('ini')
+        api.getini.writeini(ini)
+        return api.subconverter.Retry_request('http://127.0.0.1:10010/sub?target={tool}&url={sub}'.format(sub=sub,tool=tool))  
+      
+    except Exception as e:
+        return '检测调用格式是否正确'+ api.aff.aff
 if __name__ == '__main__':
     app.run(host='0.0.0.0',debug=False,port=10086)            #自定义端口
