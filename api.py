@@ -1,6 +1,7 @@
 # coding=utf-8
 import sys
 import flask_restful
+from flask import redirect, url_for
 import  base64
 import  re
 import  requests
@@ -19,8 +20,72 @@ urllib3.disable_warnings()
 
 app = Flask(__name__)
 
-@app.route('/', methods=['GET', 'POST'])
-def index():
+ip = 'http://'+api.aff.apiip+'/'
+@app.route('/',methods=['GET', 'POST'])
+def login():
+    if request.method == "POST":
+        if request.form['submit'] == '基础使用版':
+            return redirect(ip+'basic')
+        if request.form['submit'] == '节点分组版':
+            return redirect(ip+'customgroup')
+        if request.form['submit'] == '配置文件版':
+            return redirect(ip+'ini')
+    return render_template('login.html')
+
+@app.route('/basic', methods=['GET', 'POST'])
+def basic():
+    try:
+        if request.method == "POST":
+            s = request.form['left']
+            s = s.replace('\n','|').replace('\r','')
+            if s.split('|')[-1]== '':
+                s = s[:-1]        
+            if '://' in s:
+                sub = urllib.parse.quote(s)
+                try:
+                    tool=str(request.values.get('tool'))
+                except :
+                    pass
+                if tool == 'clash':
+                        CustomGroupvmess = 'http://{ip}/api/clash?sublink={sub}'.format(ip=api.aff.apiip,sub=str(sub))
+                        api2 = 'https://gfwsb.114514.best/sub?target=clash&url={sub}'.format(sub=str(sub)) 
+                        return render_template('clash.html',sub = s,api=CustomGroupvmess,api2=api2)
+
+                if tool == 'clashr':
+                        CustomGroupvmess = 'http://{ip}/api/clashr?sublink={sub}'.format(ip=api.aff.apiip,sub=str(sub))
+                        api2 = 'https://gfwsb.114514.best/sub?target=clashr&url={sub}'.format(sub=str(sub)) 
+                        return render_template('clashr.html',sub = s,api=CustomGroupvmess,api2=api2)
+                if tool == 'surge':
+                        CustomGroupvmess = 'http://{ip}/api/surge?sublink={sub}'.format(ip=api.aff.apiip,sub=str(sub))
+                        api2 = 'https://gfwsb.114514.best/sub?target=surge&url={sub}&ver=4'.format(sub=str(sub))
+                        return render_template('surge.html',sub = s,api=CustomGroupvmess,api2=api2)
+
+                if tool == 'mellow':
+                        CustomGroupvmess = 'http://{ip}/api/mellow?sublink={sub}'.format(ip=api.aff.apiip,sub=str(sub))
+                        api2 = 'https://gfwsb.114514.best/sub?target=mellow&url={sub}'.format(sub=str(sub)) 
+                        return render_template('mellow.html',sub = s,api=CustomGroupvmess,api2=api2)
+                if tool == 'surfboard':
+                        CustomGroupvmess = 'http://{ip}/api/surfboard?sublink={sub}'.format(ip=api.aff.apiip,sub=str(sub))
+                        api2 = 'https://gfwsb.114514.best/sub?target=surfboard&url={sub}'.format(sub=str(sub))                        
+                        return render_template('surfboard.html',sub = s,api=CustomGroupvmess,api2=api2)
+                if tool == 'qxnode':
+                        CustomGroupvmess = 'http://{ip}/api/qxnode?sublink={sub}'.format(ip=api.aff.apiip,sub=str(sub))
+                        api2 = 'https://gfwsb.114514.best/sub?target=quanx&url={sub}'.format(sub=str(sub))
+                        return render_template('qxnode.html',sub = s,custom="QuanX Node List 不支持客制化 ",api=CustomGroupvmess,api2=api2)            
+                if tool == 'surnode':
+                        CustomGroupvmess = 'http://{ip}/api/surnode?sublink={sub}&ver=4&udp=true&tfo=true'.format(ip=api.aff.apiip,sub=str(sub))
+                        api2 = 'https://gfwsb.114514.best/sub?target=surge&url={sub}&ver=4&list=true&udp=true&tfo=true'.format(sub=str(sub))
+                        return render_template('surgenode.html',sub = s,custom="默认为surge4，参数为为ver=4。默认udp=true,tfo=true",api=CustomGroupvmess,api2=api2)                                  
+                else:
+                    return render_template('basic.html')    
+            else:
+                return '订阅不规范'
+        return render_template('basic.html')
+    except Exception as e:
+        return e
+
+@app.route('/customgroup', methods=['GET', 'POST'])
+def customgroup():
     try:
         if request.method == "POST":
             if request.form['submit'] == '点击添加节点分组':            
@@ -97,6 +162,57 @@ def index():
     except Exception as e:
         return e
 
+@app.route('/ini', methods=['GET', 'POST'])
+def inigroup():
+    try:
+        if request.method == "POST":
+            s = request.form['left']
+            s = s.replace('\n','|').replace('\r','')
+            if s.split('|')[-1]== '':
+                s = s[:-1]        
+            if '://' in s:
+                ini=request.form['ini']                            
+                sub = urllib.parse.quote(s)
+                try:
+                    tool=str(request.values.get('tool'))
+                except :
+                    pass
+                if tool == 'clash':
+                        CustomGroupvmess = 'http://{ip}/api/clash?sublink={sub}&ini={ini}'.format(ip=api.aff.apiip,sub=str(sub),ini=ini)
+                        api2 = 'https://gfwsb.114514.best/sub?target=clash&url={sub}'.format(sub=str(sub)) 
+                        return render_template('clash.html',sub = s,custom=ini,api=CustomGroupvmess,api2=api2)
+                if tool == 'clashr':
+                        CustomGroupvmess = 'http://{ip}/api/clashr?sublink={sub}&ini={ini}'.format(ip=api.aff.apiip,sub=str(sub),ini=ini)
+                        api2 = 'https://gfwsb.114514.best/sub?target=clashr&url={sub}'.format(sub=str(sub)) 
+                        return render_template('clashr.html',sub = s,custom=ini,api=CustomGroupvmess,api2=api2)
+                if tool == 'surge':
+                        CustomGroupvmess = 'http://{ip}/api/surge?sublink={sub}&ini={ini}'.format(ip=api.aff.apiip,sub=str(sub),ini=ini)
+                        api2 = 'https://gfwsb.114514.best/sub?target=surge&url={sub}&ver=4'.format(sub=str(sub))
+                        return render_template('surge.html',sub = s,custom=ini,api=CustomGroupvmess,api2=api2)
+                if tool == 'mellow':
+                        CustomGroupvmess = 'http://{ip}/api/mellow?sublink={sub}&ini={ini}'.format(ip=api.aff.apiip,sub=str(sub),ini=ini)
+                        api2 = 'https://gfwsb.114514.best/sub?target=mellow&url={sub}'.format(sub=str(sub)) 
+                        return render_template('mellow.html',sub = s,custom=ini,api=CustomGroupvmess,api2=api2)
+                if tool == 'surfboard':
+                        CustomGroupvmess = 'http://{ip}/api/surfboard?sublink={sub}&ini={ini}'.format(ip=api.aff.apiip,sub=str(sub),ini=ini)
+                        api2 = 'https://gfwsb.114514.best/sub?target=surfboard&url={sub}'.format(sub=str(sub))                        
+                        return render_template('surfboard.html',sub = s,custom=ini,api=CustomGroupvmess,api2=api2)
+                if tool == 'qxnode':
+                        CustomGroupvmess = 'http://{ip}/api/qxnode?sublink={sub}'.format(ip=api.aff.apiip,sub=str(sub))
+                        api2 = 'https://gfwsb.114514.best/sub?target=quanx&url={sub}'.format(sub=str(sub))
+                        return render_template('qxnode.html',sub = s,custom="QuanX Node List 不支持客制化 ",api=CustomGroupvmess,api2=api2)            
+                if tool == 'surnode':
+                        CustomGroupvmess = 'http://{ip}/api/surnode?sublink={sub}&ver=4&udp=true&tfo=true'.format(ip=api.aff.apiip,sub=str(sub))
+                        api2 = 'https://gfwsb.114514.best/sub?target=surge&url={sub}&ver=4&list=true&udp=true&tfo=true'.format(sub=str(sub))
+                        return render_template('surgenode.html',sub = s,custom="默认为surge4，参数为为ver=4。默认udp=true,tfo=true",api=CustomGroupvmess,api2=api2)                                  
+                else:
+                    return render_template('ini.html')    
+            else:
+                return '订阅不规范'
+        return render_template('ini.html')
+    except Exception as e:
+        return e
+
 @app.route('/api/clash', methods=['GET', 'POST'])
 def clashapigroup():
     try:
@@ -110,12 +226,15 @@ def clashapigroup():
             custom = request.args.get('gp')
         except Exception as e:
             custom = ''
-
+        try:
+            ini = request.args.get('ini')
+        except Exception as e:
+            ini = ''
         try:
             custommethod = request.args.get('gpm')
         except Exception as e:
             custommethod = ''
-        api.subconverter.writeini(name,custom,custommethod)
+        api.subconverter.writeini(name,custom,custommethod,ini)
         return api.subconverter.Retry_request('http://127.0.0.1:10010/sub?target=clash&url='+sub)        
     except Exception as e:
         return '检测调用格式是否正确'+ api.aff.aff
@@ -133,12 +252,15 @@ def clashr():
             custom = request.args.get('gp')
         except Exception as e:
             custom = ''
-
+        try:
+            ini = request.args.get('ini')
+        except Exception as e:
+            ini = ''
         try:
             custommethod = request.args.get('gpm')
         except Exception as e:
             custommethod = ''
-        api.subconverter.writeini(name,custom,custommethod)
+        api.subconverter.writeini(name,custom,custommethod,ini)
         return api.subconverter.Retry_request('http://127.0.0.1:10010/sub?target=clashr&url='+sub)        
     except Exception as e:
         return '检测调用格式是否正确'+ api.aff.aff
@@ -156,12 +278,15 @@ def surge():
             custom = request.args.get('gp')
         except Exception as e:
             custom = ''
-
+        try:
+            ini = request.args.get('ini')
+        except Exception as e:
+            ini = ''
         try:
             custommethod = request.args.get('gpm')
         except Exception as e:
             custommethod = ''
-        api.subconverter.writeini(name,custom,custommethod)
+        api.subconverter.writeini(name,custom,custommethod,ini)
         #return api.subconverter.Retry_request('http://127.0.0.1:10010/surge?url='+sub+'&ver=4')     
         return api.subconverter.Retry_request('http://127.0.0.1:10010/sub?target=surge&url='+sub+'&ver=4')        
    
@@ -205,12 +330,15 @@ def mellow():
             custom = request.args.get('gp')
         except Exception as e:
             custom = ''
-
+        try:
+            ini = request.args.get('ini')
+        except Exception as e:
+            ini = ''
         try:
             custommethod = request.args.get('gpm')
         except Exception as e:
             custommethod = ''
-        api.subconverter.writeini(name,custom,custommethod)
+        api.subconverter.writeini(name,custom,custommethod,ini)
         return api.subconverter.Retry_request('http://127.0.0.1:10010/mellow?url='+sub)        
     except Exception as e:
         return '检测调用格式是否正确'+ api.aff.aff
@@ -228,12 +356,15 @@ def surfboard():
             custom = request.args.get('gp')
         except Exception as e:
             custom = ''
-
+        try:
+            ini = request.args.get('ini')
+        except Exception as e:
+            ini = ''
         try:
             custommethod = request.args.get('gpm')
         except Exception as e:
             custommethod = ''
-        api.subconverter.writeini(name,custom,custommethod)
+        api.subconverter.writeini(name,custom,custommethod,ini)
         return api.subconverter.Retry_request('http://127.0.0.1:10010/sub?target=surfboard&url='+sub)        
     except Exception as e:
         return '检测调用格式是否正确'+ api.aff.aff
@@ -256,7 +387,7 @@ def surnode():
     except Exception as e:
         return '检测调用格式是否正确'+ api.aff.aff
 
-@app.route('/api/ini', methods=['GET', 'POST'])
+@app.route('/api/inisdadsadasdasdasd', methods=['GET', 'POST'])
 def ini():
     try:
         sub = request.args.get('sublink')
@@ -267,5 +398,6 @@ def ini():
       
     except Exception as e:
         return '检测调用格式是否正确'+ api.aff.aff
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0',debug=False,port=10086)            #自定义端口
