@@ -165,6 +165,7 @@ def customgroup():
 @app.route('/ini', methods=['GET', 'POST'])
 def inigroup():
     try:
+        '''
         if request.method == "POST":
             s = request.form['left']
             s = s.replace('\n','|').replace('\r','')
@@ -210,6 +211,8 @@ def inigroup():
             else:
                 return '订阅不规范'
         return render_template('ini.html')
+        '''
+        return '暂时不可用'
     except Exception as e:
         return e
 
