@@ -20,6 +20,8 @@ urllib3.disable_warnings()
 
 app = Flask(__name__)
 
+
+
 ip = 'http://'+api.aff.apiip+'/'
 @app.route('/',methods=['GET', 'POST'])
 def login():
