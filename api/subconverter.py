@@ -83,7 +83,7 @@ def writeini(name,custom,method,ini):             # 自定义规则
             with codecs.open("./config/pref.ini", "w",encoding = 'utf-8') as f:
                     f.writelines(rule)                             
     except Exception as e:
-        return(e)
+        print(e)
 
 #print(Retry_request('http://127.0.0.1:10010/clash?url=https%3A//stc-dns.com/link/jSkLx7LgGRRfgSFw%3Fmu%3D2'))
 #custom_proxy_group=UrlTest`url-test`.*`http://www.gstatic.com/generate_204`300
