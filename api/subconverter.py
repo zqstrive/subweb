@@ -32,27 +32,25 @@ def writeini(name,custom,method,ini):             # 自定义规则
             else:
                 with open("./config/prefserver.ini", "r",encoding = 'utf-8') as f:
                     rule = f.read()
-
                 names = str(name).split('@')                
                 groups = str(custom).split('@')
                 methods = str(method).split('@')
-
                 if len(groups) == len(names):  #分组填写正常的的情况
                         inicustom = str(rule).split(';NicoNewBeee')
                         inigroup = ''
                         groupname = '`'
                         for i in range(1,len(groups)):
                             if methods[i] == 'sl':
-                                inigroup += 'custom_proxy_group='+str(names[i])+'手动选择`select`('+str(groups[i])+')\n'
+                                inigroup += 'custom_proxy_group='+str(names[i])+'手动选择`select`'+str(groups[i])+'\n'
                                 groupname += '[]'+str(names[i])+'手动选择`'
                             if methods[i] == 'ut':
-                                inigroup += 'custom_proxy_group='+str(names[i])+'延迟最低`url-test`('+str(groups[i])+')`http://www.gstatic.com/generate_204`500\n'
+                                inigroup += 'custom_proxy_group='+str(names[i])+'延迟最低`url-test`'+str(groups[i])+'`http://www.gstatic.com/generate_204`500\n'
                                 groupname += '[]'+str(names[i])+'延迟最低`'
                             if methods[i] == 'fb':
-                                inigroup += 'custom_proxy_group='+str(names[i])+'故障切换`fallback`('+str(groups[i])+')`http://www.gstatic.com/generate_204`500\n'
+                                inigroup += 'custom_proxy_group='+str(names[i])+'故障切换`fallback`'+str(groups[i])+'`http://www.gstatic.com/generate_204`500\n'
                                 groupname += '[]'+str(names[i])+'故障切换`'
                             if methods[i] == 'lb':
-                                inigroup += 'custom_proxy_group='+str(names[i])+'负载均衡`load-balance`('+str(groups[i])+')`http://www.gstatic.com/generate_204`500\n'
+                                inigroup += 'custom_proxy_group='+str(names[i])+'负载均衡`load-balance`'+str(groups[i])+'`http://www.gstatic.com/generate_204`500\n'
                                 groupname += '[]'+str(names[i])+'负载均衡`'
 
                         proxygroup =   'custom_proxy_group=🔰 节点选择`select'+groupname+'[]DIRECT\n\
@@ -85,8 +83,5 @@ def writeini(name,custom,method,ini):             # 自定义规则
     except Exception as e:
         print(e)
 
-#print(Retry_request('http://127.0.0.1:10010/clash?url=https%3A//stc-dns.com/link/jSkLx7LgGRRfgSFw%3Fmu%3D2'))
-#custom_proxy_group=UrlTest`url-test`.*`http://www.gstatic.com/generate_204`300
-#custom_proxy_group=FallBack`fallback`.*`http://www.gstatic.com/generate_204`300
-#custom_proxy_group=LoadBalance`load-balance`.*`http://www.gstatic.com/generate_204`300
+
 

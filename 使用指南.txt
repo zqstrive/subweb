@@ -9,8 +9,8 @@ pip3 install flask
 pip3 install flask_restful
 
 修改文件：
-修改 config/subconverter   的文件权限，全部勾选
-修改 api/aff/py            为自己的ip
+修改 chmod 777 /root/subweb/config/subconverter  
+修改 api/aff.py            为自己的ip
 
 开始运行（已screen为例）：
 第一个screen
