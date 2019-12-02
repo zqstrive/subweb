@@ -74,7 +74,7 @@ def writeini(name,custom,method,ini):             # 自定义规则
             with open("./config/inibase.ini", "r",encoding = 'utf-8') as f:
                     rule = f.read()
             ini = Retry_request(ini)
-            if '[common]' in ini or '[server]' in ini or '[advanced]' in ini or '[managed_config]' in ini:
+            if '[common]' in ini or '[server]' in ini or '[advanced]' in ini or '[managed_config]' in ini or '[ruleset]' in ini:
                 return 'ini'
             ini = ini.split(';NicoNewBeee')[1]
             rule =  rule + '\n;ini客制化\n'+ini
