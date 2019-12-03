@@ -84,4 +84,48 @@ def writeini(name,custom,method,ini):             # 自定义规则
         print(e)
 
 
+def getgroups(name,custom,method):             # 自定义规则   
+    try:
+            if custom == '' or custom == None:   #不分组的情况
+                return ''          
+            else:
+                names = str(name).split('@')                
+                groups = str(custom).split('@')
+                methods = str(method).split('@')
+                if len(groups) == len(names):  #分组填写正常的的情况
+                        inigroup = ''
+                        groupname = '`'
+                        for i in range(1,len(groups)):
+                            if methods[i] == 'sl':
+                                inigroup += '@'+str(names[i])+'手动选择`select`'+str(groups[i])+''
+                                groupname += '[]'+str(names[i])+'手动选择`'
+                            if methods[i] == 'ut':
+                                inigroup += '@'+str(names[i])+'延迟最低`url-test`'+str(groups[i])+'`http://www.gstatic.com/generate_204`500'
+                                groupname += '[]'+str(names[i])+'延迟最低`'
+                            if methods[i] == 'fb':
+                                inigroup += '@'+str(names[i])+'故障切换`fallback`'+str(groups[i])+'`http://www.gstatic.com/generate_204`500'
+                                groupname += '[]'+str(names[i])+'故障切换`'
+                            if methods[i] == 'lb':
+                                inigroup += '@'+str(names[i])+'负载均衡`load-balance`'+str(groups[i])+'`http://www.gstatic.com/generate_204`500'
+                                groupname += '[]'+str(names[i])+'负载均衡`'
+
+                        proxygroup =   '@🔰 节点选择`select'+groupname+'[]DIRECT'\
+                                        '@📲 电报吹水`select`[]🔰 节点选择`'+groupname+'[]DIRECT'\
+                                        '@📹 YouTube`select`[]🔰 节点选择`'+groupname+'[]DIRECT'\
+                                        '@🎥 NETFLIX`select`[]🔰 节点选择`'+groupname+'`(NF|解锁)`[]DIRECT'\
+                                        '@📺 巴哈姆特`select`[]🔰 节点选择`'+groupname+'[]DIRECT'\
+                                        '@🌍 国外媒体`select`[]🔰 节点选择`'+groupname+'[]DIRECT'\
+                                        '@🌏 国内媒体`select`[]DIRECT`[]🔰 节点选择'\
+                                        '@🍎 苹果服务`select`[]DIRECT`[]🔰 节点选择`'\
+                                        '@🛑 全球拦截`select`[]REJECT`[]DIRECT'\
+                                        '@🐟 漏网之鱼`select`[]🔰 节点选择`[]DIRECT`'+groupname+''
+
+                        inicustom = proxygroup+inigroup                
+                        return inicustom
+                else:                           #分组填写不正常的的情况
+                    return ''                          
+    except Exception as e:
+        print(e)
+
+
 
