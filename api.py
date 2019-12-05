@@ -181,30 +181,32 @@ def inigroup():
             if '://' in s:
                 ini=request.form['ini']                            
                 sub = urllib.parse.quote(s)
-                ini = urllib.parse.quote(ini)
                 try:
                     tool=str(request.values.get('tool'))
                 except :
                     pass
+                ini1 = api.subconverter.getini(ini).split('&')
+                rulesets = str(safe_base64_encode(ini1[0])).split('\'')[1]
+                groups = str(safe_base64_encode(ini1[1])).split('\'')[1]               
                 if tool == 'clash':
-                        CustomGroupvmess = 'http://{ip}/api/clash?sublink={sub}&ini={ini}'.format(ip=api.aff.apiip,sub=str(sub),ini=ini)
-                        api2 = 'https://gfwsb.114514.best/sub?target=clash&url={sub}'.format(sub=str(sub)) 
+                        CustomGroupvmess = 'http://{ip}/sub?target=clash&url={sub}&ruleset={rulesets}&groups={groups}'.format(ip=api.aff.subip,sub=str(sub),groups=groups,rulesets=rulesets)
+                        api2 = 'https://gfwsb.114514.best/sub?target=clash&url={sub}&ruleset={rulesets}&groups={groups}'.format(sub=str(sub),groups=groups,rulesets=rulesets) 
                         return render_template('clash.html',sub = s,custom=ini,api=CustomGroupvmess,api2=api2)
                 if tool == 'clashr':
-                        CustomGroupvmess = 'http://{ip}/api/clashr?sublink={sub}&ini={ini}'.format(ip=api.aff.apiip,sub=str(sub),ini=ini)
-                        api2 = 'https://gfwsb.114514.best/sub?target=clashr&url={sub}'.format(sub=str(sub)) 
+                        CustomGroupvmess = 'http://{ip}/sub?target=clashr&url={sub}&ruleset={rulesets}&groups={groups}'.format(ip=api.aff.subip,sub=str(sub),groups=groups,rulesets=rulesets)
+                        api2 = 'https://gfwsb.114514.best/sub?target=clashr&url={sub}&ruleset={rulesets}&groups={groups}'.format(sub=str(sub),groups=groups,rulesets=rulesets) 
                         return render_template('clashr.html',sub = s,custom=ini,api=CustomGroupvmess,api2=api2)
                 if tool == 'surge':
-                        CustomGroupvmess = 'http://{ip}/api/surge?sublink={sub}&ini={ini}'.format(ip=api.aff.apiip,sub=str(sub),ini=ini)
-                        api2 = 'https://gfwsb.114514.best/sub?target=surge&url={sub}&ver=4'.format(sub=str(sub))
+                        CustomGroupvmess = 'http://{ip}/sub?target=surge&url={sub}&ruleset={rulesets}&groups={groups}'.format(ip=api.aff.subip,sub=str(sub),groups=groups,rulesets=rulesets)
+                        api2 = 'https://gfwsb.114514.best/sub?target=surge&url={sub}&ruleset={rulesets}&groups={groups}'.format(sub=str(sub),groups=groups,rulesets=rulesets) 
                         return render_template('surge.html',sub = s,custom=ini,api=CustomGroupvmess,api2=api2)
                 if tool == 'mellow':
-                        CustomGroupvmess = 'http://{ip}/api/mellow?sublink={sub}&ini={ini}'.format(ip=api.aff.apiip,sub=str(sub),ini=ini)
-                        api2 = 'https://gfwsb.114514.best/sub?target=mellow&url={sub}'.format(sub=str(sub)) 
+                        CustomGroupvmess = 'http://{ip}/sub?target=mellow&url={sub}&ruleset={rulesets}&groups={groups}'.format(ip=api.aff.subip,sub=str(sub),groups=groups,rulesets=rulesets)
+                        api2 = 'https://gfwsb.114514.best/sub?target=mellow&url={sub}&ruleset={rulesets}&groups={groups}'.format(sub=str(sub),groups=groups,rulesets=rulesets) 
                         return render_template('mellow.html',sub = s,custom=ini,api=CustomGroupvmess,api2=api2)
                 if tool == 'surfboard':
-                        CustomGroupvmess = 'http://{ip}/api/surfboard?sublink={sub}&ini={ini}'.format(ip=api.aff.apiip,sub=str(sub),ini=ini)
-                        api2 = 'https://gfwsb.114514.best/sub?target=surfboard&url={sub}'.format(sub=str(sub))                        
+                        CustomGroupvmess = 'http://{ip}/sub?target=surfboard&url={sub}&ruleset={rulesets}&groups={groups}'.format(ip=api.aff.subip,sub=str(sub),groups=groups,rulesets=rulesets)
+                        api2 = 'https://gfwsb.114514.best/sub?target=surfboard&url={sub}&ruleset={rulesets}&groups={groups}'.format(sub=str(sub),groups=groups,rulesets=rulesets) 
                         return render_template('surfboard.html',sub = s,custom=ini,api=CustomGroupvmess,api2=api2)
                 if tool == 'qxnode':
                         CustomGroupvmess = 'http://{ip}/api/qxnode?sublink={sub}'.format(ip=api.aff.apiip,sub=str(sub))
@@ -223,185 +225,6 @@ def inigroup():
     except Exception as e:
         return e
 
-@app.route('/api/clash', methods=['GET', 'POST'])
-def clashapigroup():
-    try:
-        sub = request.args.get('sublink')
-        try:
-            name = request.args.get('name')
-        except Exception as e:
-            name = ''
-
-        try:
-            custom = request.args.get('gp')
-        except Exception as e:
-            custom = ''
-        try:
-            ini = request.args.get('ini')
-        except Exception as e:
-            ini = ''
-        try:
-            custommethod = request.args.get('gpm')
-        except Exception as e:
-            custommethod = ''
-        api.subconverter.writeini(name,custom,custommethod,ini)
-        final =  api.subconverter.Retry_request('http://127.0.0.1:10010/sub?target=clash&url='+sub)
-        api.subconverter.writeini('','','','')   
-        return final                  
-    except Exception as e:
-        return '检测调用格式是否正确'+ api.aff.aff
-
-@app.route('/api/clashr', methods=['GET', 'POST'])
-def clashr():
-    try:
-        sub = request.args.get('sublink')
-        try:
-            name = request.args.get('name')
-        except Exception as e:
-            name = ''
-
-        try:
-            custom = request.args.get('gp')
-        except Exception as e:
-            custom = ''
-        try:
-            ini = request.args.get('ini')
-        except Exception as e:
-            ini = ''
-        try:
-            custommethod = request.args.get('gpm')
-        except Exception as e:
-            custommethod = ''
-        api.subconverter.writeini(name,custom,custommethod,ini)
-        final =  api.subconverter.Retry_request('http://127.0.0.1:10010/sub?target=clashr&url='+sub)
-        api.subconverter.writeini('','','','')   
-        return final                  
-    except Exception as e:
-        return '检测调用格式是否正确'+ api.aff.aff
-
-@app.route('/api/surge', methods=['GET', 'POST'])
-def surge():
-    try:
-        sub = request.args.get('sublink')
-        try:
-            name = request.args.get('name')
-        except Exception as e:
-            name = ''
-
-        try:
-            custom = request.args.get('gp')
-        except Exception as e:
-            custom = ''
-        try:
-            ini = request.args.get('ini')
-        except Exception as e:
-            ini = ''
-        try:
-            custommethod = request.args.get('gpm')
-        except Exception as e:
-            custommethod = ''
-        api.subconverter.writeini(name,custom,custommethod,ini) 
-        final = api.subconverter.Retry_request('http://127.0.0.1:10010/sub?target=surge&url='+sub+'&ver=4')  
-        api.subconverter.writeini('','','','')   
-        return final        
-   
-    except Exception as e:
-        return '检测调用格式是否正确'+ api.aff.aff
-
-@app.route('/api/mellow', methods=['GET', 'POST'])
-def mellow():
-    try:
-        sub = request.args.get('sublink')
-        try:
-            name = request.args.get('name')
-        except Exception as e:
-            name = ''
-
-        try:
-            custom = request.args.get('gp')
-        except Exception as e:
-            custom = ''
-        try:
-            ini = request.args.get('ini')
-        except Exception as e:
-            ini = ''
-        try:
-            custommethod = request.args.get('gpm')
-        except Exception as e:
-            custommethod = ''
-        api.subconverter.writeini(name,custom,custommethod,ini)
-        final = api.subconverter.Retry_request('http://127.0.0.1:10010/mellow?url='+sub)
-        api.subconverter.writeini('','','','')
-        return final       
-    except Exception as e:
-        return '检测调用格式是否正确'+ api.aff.aff
-
-@app.route('/api/surfboard', methods=['GET', 'POST'])
-def surfboard():
-    try:
-        sub = request.args.get('sublink')
-        try:
-            name = request.args.get('name')
-        except Exception as e:
-            name = ''
-
-        try:
-            custom = request.args.get('gp')
-        except Exception as e:
-            custom = ''
-        try:
-            ini = request.args.get('ini')
-        except Exception as e:
-            ini = ''
-        try:
-            custommethod = request.args.get('gpm')
-        except Exception as e:
-            custommethod = ''
-        api.subconverter.writeini(name,custom,custommethod,ini)
-        final = api.subconverter.Retry_request('http://127.0.0.1:10010/sub?target=surfboard&url='+sub)
-        api.subconverter.writeini('','','','')
-        return final       
-    except Exception as e:
-        return '检测调用格式是否正确'+ api.aff.aff
-
-@app.route('/api/surnode', methods=['GET', 'POST'])
-def surnode():
-    try:
-        sub = request.args.get('sublink')
-        ver = request.args.get('ver')
-        try:
-            udp = request.args.get('udp')
-        except Exception as e:
-            udp = 'true'
-        try:
-            tfo = request.args.get('tfo')
-        except Exception as e:
-            tfo = 'true'               
-        return api.subconverter.Retry_request('http://127.0.0.1:10010/sub?target=surge&url={sub}&ver={ver}&list=true&udp={udp}&tfo={tfo}'.format(sub=sub,ver=ver,udp=udp,tfo=tfo))  
-      
-    except Exception as e:
-        return '检测调用格式是否正确'+ api.aff.aff
-
-@app.route('/api/qxnode', methods=['GET', 'POST'])
-def qxnode():
-    try:
-        sub = request.args.get('sublink')
-        final = api.subconverter.Retry_request('http://127.0.0.1:10010/sub?target=quanx&url='+sub)
-        return final            
-    except Exception as e:
-        return '检测调用格式是否正确'+ api.aff.aff
-
-@app.route('/api/inisdadsadasdasdasd', methods=['GET', 'POST'])
-def ini():
-    try:
-        sub = request.args.get('sublink')
-        tool = request.args.get('tool')
-        ini = request.args.get('ini')
-        api.getini.writeini(ini)
-        return api.subconverter.Retry_request('http://127.0.0.1:10010/sub?target={tool}&url={sub}'.format(sub=sub,tool=tool))  
-      
-    except Exception as e:
-        return '检测调用格式是否正确'+ api.aff.aff
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0',debug=False,port=10086)            #自定义端口
