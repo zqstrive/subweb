@@ -185,7 +185,10 @@ def inigroup():
                     tool=str(request.values.get('tool'))
                 except :
                     pass
-                ini1 = api.subconverter.getini(ini).split('&')
+                try:
+                    ini1 = api.subconverter.getini(ini).split('&')
+                except :
+                    return '检查远程配置文件是否正确'
                 rulesets = str(safe_base64_encode(ini1[0])).split('\'')[1]
                 groups = str(safe_base64_encode(ini1[1])).split('\'')[1]               
                 if tool == 'clash':

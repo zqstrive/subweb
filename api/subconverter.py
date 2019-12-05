@@ -120,11 +120,9 @@ def getgroups(name,custom,method):             # 自定义规则
                                         '@🐟 漏网之鱼`select`[]🔰 节点选择`[]DIRECT`'+groupname+''
 
                         inicustom = proxygroup+inigroup                
-                        return inicustom
-                else:                           #分组填写不正常的的情况
-                    return ''                          
+                        return inicustom                         
     except Exception as e:
-        print(e)
+        return 'erro'
 
 
 
