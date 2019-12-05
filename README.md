@@ -27,7 +27,7 @@
     cd /root/subweb/config<br/>
     ./subconverter<br/>
   - 托管地址生成页面示意图<br/>
-  ![image](https://github.com/lzdnico/subweb/tree/test/images/index.png) <br/>
+  ![image](https://github.com/lzdnico/subweb/blob/test/images/index.png) <br/>
   - STC机场客制化节点分组示意图<br/>
   ![image](https://github.com/lzdnico/SSRClash/blob/newapi/images/example.png) <br/>
   - 脚本可运行在本地，其中ip改为127.0.0.1即可 <br/> 
