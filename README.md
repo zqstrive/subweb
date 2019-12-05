@@ -27,14 +27,14 @@
     cd /root/subweb/config<br/>
     ./subconverter<br/>
   - 托管地址生成页面示意图<br/>
-  ![image](https://github.com/lzdnico/subweb/images/index.png) <br/>
+  ![image](https://github.com/lzdnico/subweb/tree/test/images/index.png) <br/>
   - STC机场客制化节点分组示意图<br/>
   ![image](https://github.com/lzdnico/SSRClash/blob/newapi/images/example.png) <br/>
   - 脚本可运行在本地，其中ip改为127.0.0.1即可 <br/> 
 
 
 # 联系我
-   - 联系之前先看主页说明
+   - 关注频道：https://t.me/niconewbeeeapi
    - 有用的话，欢迎TG打赏
    - https://t.me/NicoNewBeee
 
