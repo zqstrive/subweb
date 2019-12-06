@@ -14,12 +14,10 @@ import codecs
 import api.subconverter
 import api.aff
 import api.getini
-
 from flask import Flask,render_template,request
 urllib3.disable_warnings()
 
-
-def safe_base64_decode(s): # 解码
+def safe_base64_decode(s): # 解密
     try:
         if len(s) % 4 != 0:
             s = s + '=' * (4 - len(s) % 4)
@@ -32,7 +30,7 @@ def safe_base64_encode(s): # 加密
     try:
         return base64.urlsafe_b64encode(bytes(s, encoding='utf8'))
     except Exception as e:
-        print('解码错误',e)
+        print('加密错误',e)
 
 app = Flask(__name__)
 
