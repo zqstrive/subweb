@@ -35,6 +35,7 @@ def safe_base64_encode(s): # 加密
 app = Flask(__name__)
 
 ip = 'http://'+api.aff.apiip+'/'
+
 @app.route('/',methods=['GET', 'POST'])
 def login():
     if request.method == "POST":
@@ -225,7 +226,5 @@ def inigroup():
         
     except Exception as e:
         return e
-
-
 if __name__ == '__main__':
     app.run(host='0.0.0.0',debug=False,port=10086)            #自定义端口
