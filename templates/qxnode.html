@@ -31,11 +31,13 @@
 
             <div class="card" align="center">
                 <h2>🤖 QuanX Node List 为</h2>
-                <h3>STC 提供的托管地址为（客制化暂时不起作用）</h3>
+                <h3>STC 提供的托管地址为</h3>
                 <textarea name = "clash" cols="70" rows="5" id="end"  placeholder="这是生成的托管地址"   >{{ api }}</textarea>
-                <h3>TindyX 提供的托管地址为（客制化暂时不起作用）</h3>
-                <textarea name = "clash" cols="70" rows="5" id="end"  placeholder="这是生成的托管地址"   >{{ api2 }}</textarea>                
-                <button  id="btnCopy">点击复制吧</button>     
+                <button  id="btnCopy">点击复制吧</button>
+                <br/><br/>
+                <h3>TindyX 提供的托管地址为</h3>
+                <textarea name = "clash" cols="70" rows="5" id="end2"  placeholder="这是生成的托管地址"   >{{ api2 }}</textarea>                
+                <button  id="btnCopy2">点击复制吧</button>       
             </div> 
     <footer>
         <p> &copy;<a href="https://weibo.com/hackl0us">@Hackl0us</a>.<a href="https://weibo.com/haxck"> 美工</a>.<a href="https://github.com/tindy2013/subconverter"> API源码</a>.<a>@NicoNewBeee</a></p>
@@ -44,10 +46,16 @@
 <script type="text/javascript">
     const myInp = document.getElementById("end");
     const btnCopy = document.getElementById("btnCopy");
+    const myInp2 = document.getElementById("end2");
+    const btnCopy2 = document.getElementById("btnCopy2");
     btnCopy.onclick = function(){
         myInp.select();
         document.execCommand("Copy");
   };
+    btnCopy2.onclick = function(){
+        myInp2.select();
+        document.execCommand("Copy");
+  }; 
 </script>
 </body>
 
