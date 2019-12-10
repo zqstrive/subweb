@@ -38,7 +38,8 @@
 docker pull gtary/subweb
 ```
 2. 运行 
-> 端口根据情况可选暴露映射
+> WEB_HOST 和 CORE_HOST 分别填写服务器IP已经端口
+> -p 参数：WEB_HOST的端口映射到10086，CORE_HOST的端口映射到10010
 
 ```bash
 docker run -d --restart=always --name=subweb -e WEB_HOST=http://127.0.0.1:80 -e CORE_HOST=http://127.0.0.1:81 -p 81:10010 -p 80:10086 gtary/subweb
