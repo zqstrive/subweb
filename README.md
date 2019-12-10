@@ -12,12 +12,10 @@
 # 如何搭建
   - 1.安装python3 依赖： <br/>
   apt install -y python3-pip  git python3 <br/>
-  - 2.安装库： <br/>
-  pip3 install requests<br/> 
-  pip3 install flask<br/>
-  pip3 install flask_restful<br/>
-  - 3.下载源码：<br/>
-  git clone https://github.com/lzdnico/subweb.git<br/>
+  - 2.下载源码：<br/>
+  git clone https://github.com/lzdnico/subweb.git /root/subweb<br/>
+  - 3.安装库： <br/>
+  pip3 install -I -r requirements.txt <br/>
   - 4.修改文件：<br/>
   chmod 777 /root/subweb/config/subconverter <br/>
   修改 api/aff.py  中的subip和apiip 端口默认情况下不用改<br/>
