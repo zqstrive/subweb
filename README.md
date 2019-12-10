@@ -41,7 +41,7 @@ docker pull gtary/subweb
 > 端口根据情况可选暴露映射
 
 ```bash
-docker run -e WEB_HOST=http://127.0.0.1:80 -e CORE_HOST=http://127.0.0.1:81 -p 81:10010 -p 80:10086 gtary/subweb
+docker run -d --name=subweb -e WEB_HOST=http://127.0.0.1:80 -e CORE_HOST=http://127.0.0.1:81 -p 81:10010 -p 80:10086 gtary/subweb
 ```
 3. 停止
 ```bash
