@@ -30,6 +30,36 @@
   ![image](https://github.com/lzdnico/SSRClash/blob/newapi/images/example.png) <br/>
   - 脚本可运行在本地，其中ip改为127.0.0.1即可 <br/> 
 
+# Docker 运行
+> https://docker.io/gtary/subweb build by [@du5](https://t.me/Gtary)
+
+1. 拉取镜像
+```bash
+docker pull gtary/subweb
+```
+2. 运行 
+> 端口根据情况可选暴露映射
+
+```bash
+docker run -d --name=subweb --restart=always -p 80:10086 -p 25500:25500 gtary/subweb
+```
+3. 停止
+```bash
+docker stop subweb
+```
+4. 重启
+```bash
+docker restart subweb
+```
+4. 删除
+```bash
+docker rm -f subweb
+```
+5. 查看日志
+```bash
+docker exec subweb tail /var/log/core.log -f
+docker exec subweb tail /var/log/web.log -f
+```
 
 # 联系我
    - 关注频道：https://t.me/niconewbeeeapi
