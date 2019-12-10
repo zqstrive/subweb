@@ -41,7 +41,7 @@ docker pull gtary/subweb
 > 端口根据情况可选暴露映射
 
 ```bash
-docker run -d --name=subweb --restart=always -p 80:10086 -p 25500: 25500 gtary/subweb
+docker run -d --name=subweb --restart=always -p 80:10086 -p 25500:25500 gtary/subweb
 ```
 3. 停止
 ```bash
@@ -54,6 +54,11 @@ docker restart subweb
 4. 删除
 ```bash
 docker rm -f subweb
+```
+5. 查看日志
+```bash
+docker exec subweb tail /var/log/core.log -f
+docker exec subweb tail /var/log/web.log -f
 ```
 
 # 联系我
