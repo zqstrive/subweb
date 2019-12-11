@@ -36,8 +36,7 @@
 git clone https://github.com/lzdnico/subweb.git 
 cd subweb
 ```
-- 2.客制化： <br/><br/>
-修改 api/aff.py (必须，用于自定义网站和sub内核的ip和端口) <br/><br/>
+- 2.客制化（可选）： <br/><br/>
 修改 config/pref.ini（可选，用于自定义默认规则）<br/><br/>
 修改 docker.sh (可选，启动后执行的命令，默认5分钟进行自检)<br/><br/>
 修改 templates(可选)下html网页显示内容
@@ -48,7 +47,7 @@ cd subweb
 ```
 - 4.运行docker <br/>
 ```bash
-  docker run -d --restart=always --name=subweb -p Web_Port:10086 -p Core_Port:10010 subweb
+  docker run -d --restart=always --name=subweb -e WEB_HOST=http://127.0.0.1:80 -e CORE_HOST=http://127.0.0.1:81 -p Web_Port:10086 -p Core_Port:10010 subweb
 ```
 - 5.查看日志 <br/>
 ```bash
