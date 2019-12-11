@@ -26,11 +26,34 @@
     ./subconverter<br/>
   - 托管地址生成页面示意图<br/>
   ![image](https://github.com/lzdnico/subweb/blob/test/images/index.png) <br/>
-  - STC机场客制化节点分组示意图<br/>
-  ![image](https://github.com/lzdnico/SSRClash/blob/newapi/images/example.png) <br/>
-  - 脚本可运行在本地，其中ip改为127.0.0.1即可 <br/> 
 
-# Docker 运行 By NicoNewBeee
+# Docker 运行 By NicoNewBeee 
+- 1.拉取镜像： <br/>
+```bash
+docker pull niconewbeee/subweb:latest
+```
+- 2.运行docker <br/>
+```bash
+  docker run -d --restart=always --name=subweb -e WEB_HOST=http://serverip:Web_Port -e CORE_HOST=http://serverip:Core_Port -p Web_Port:10086 -p Core_Port:10010 niconewbeee/subweb
+```
+- 3.查看日志 <br/>
+```bash
+  docker logs -f -t --tail 10 subweb
+```
+- 4.停止 <br/>
+```bash
+docker stop subweb
+```
+- 5.重启 <br/>
+```bash
+docker restart subweb
+```
+- 6.删除 <br/>
+```bash
+docker rm -f subweb
+```
+
+# Docker 运行 By NicoNewBeee 自编译版
 - 1.下载源码： <br/>
 ```bash
 git clone https://github.com/lzdnico/subweb.git 
@@ -47,7 +70,7 @@ cd subweb
 ```
 - 4.运行docker <br/>
 ```bash
-  docker run -d --restart=always --name=subweb -e WEB_HOST=http://127.0.0.1:Web_Port -e CORE_HOST=http://127.0.0.1:Core_Port -p Web_Port:10086 -p Core_Port:10010 subweb
+  docker run -d --restart=always --name=subweb -e WEB_HOST=http://serverip:Web_Port -e CORE_HOST=http://serverip:Core_Port -p Web_Port:10086 -p Core_Port:10010 subweb
 ```
 - 5.查看日志 <br/>
 ```bash
