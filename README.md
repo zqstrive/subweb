@@ -47,7 +47,7 @@ cd subweb
 ```
 - 4.运行docker <br/>
 ```bash
-  docker run -d --restart=always --name=subweb -e WEB_HOST=http://127.0.0.1:80 -e CORE_HOST=http://127.0.0.1:81 -p Web_Port:10086 -p Core_Port:10010 subweb
+  docker run -d --restart=always --name=subweb -e WEB_HOST=http://127.0.0.1:Web_Port -e CORE_HOST=http://127.0.0.1:Core_Port -p Web_Port:10086 -p Core_Port:10010 subweb
 ```
 - 5.查看日志 <br/>
 ```bash
@@ -66,7 +66,7 @@ docker pull gtary/subweb
 > -p 参数：WEB_HOST的端口映射到10086，CORE_HOST的端口映射到10010
 
 ```bash
-docker run -d --restart=always --name=subweb -e WEB_HOST=http://127.0.0.1:80 -e CORE_HOST=http://127.0.0.1:81 -p 81:10010 -p 80:10086 gtary/subweb
+docker run -d --restart=always --name=subweb -e WEB_HOST=http://127.0.0.1:Web_Port -e CORE_HOST=http://127.0.0.1:Core_Port -p Web_Port:10086 -p Core_Port:10010 gtary/subweb
 ```
 3. 停止
 ```bash
