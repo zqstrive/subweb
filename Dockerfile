@@ -1,5 +1,4 @@
 FROM alpine:latest
-MAINTAINER NicoNewBeee "lzd596049368@gmail.com"
 RUN apk add --no-cache python3-dev  \
     && pip3 install --upgrade pip 
 COPY . /subweb

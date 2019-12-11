@@ -16,7 +16,7 @@ do
         cd /subweb/config
         ./subconverter &
         pkill python3
-        python3 /subweb/api.py &
+        python3 /subweb/api.py &   #运行web服务
 echo "------------------------------------Restart----------------------------------------"
     fi
     sleep 300s

@@ -13,7 +13,7 @@
   - 1.安装python3 依赖： <br/>
   apt install -y python3-pip  git python3 <br/>
   - 2.下载源码：<br/>
-  git clone https://github.com/lzdnico/subweb.git /root/subweb<br/>
+  git clone https://github.com/lzdnico/subweb.git <br/>
   - 3.安装库： <br/>
   pip3 install -I -r requirements.txt <br/>
   - 4.修改文件：<br/>
@@ -31,28 +31,28 @@
   - 脚本可运行在本地，其中ip改为127.0.0.1即可 <br/> 
 
 # Docker 运行 By NicoNewBeee
-- 1.新建文件夹： <br/>
+- 1.下载源码： <br/>
 ```bash
-mkdir mydocker 
-cd mydocker
+git clone https://github.com/lzdnico/subweb.git 
+cd subweb
 ```
-- 2.客制化： <br/>
-将项目docker文件夹下的所有文件拷贝到mydocker<br/><br/>
-修改 aff.py   (用于自定义网站和sub内核的ip和端口) <br/><br/>
-修改 pref.ini（用于自定义默认规则）<br/><br/>
-修改 my.sh    (启动后执行的命令，默认5分钟进行自检)
+- 2.客制化： <br/><br/>
+修改 api/aff.py (必须，用于自定义网站和sub内核的ip和端口) <br/><br/>
+修改 config/pref.ini（可选，用于自定义默认规则）<br/><br/>
+修改 docker.sh (可选，启动后执行的命令，默认5分钟进行自检)<br/><br/>
+修改 templates(可选)下html网页显示内容
 
 - 3.生成docker <br/>
 ```bash
-  docker build -t dockername .
+  docker build -t subweb .
 ```
 - 4.运行docker <br/>
 ```bash
-  docker run -d --restart=always --name=subweb -p Web_Port:10086 -p Core_Port:10010 dockername
+  docker run -d --restart=always --name=subweb -p Web_Port:10086 -p Core_Port:10010 subweb
 ```
 - 5.查看日志 <br/>
 ```bash
-docker logs -f -t --tail 10 subweb
+  docker logs -f -t --tail 10 subweb
 ```
 
 # Docker 运行 By du5
