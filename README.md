@@ -30,7 +30,32 @@
   ![image](https://github.com/lzdnico/SSRClash/blob/newapi/images/example.png) <br/>
   - 脚本可运行在本地，其中ip改为127.0.0.1即可 <br/> 
 
-# Docker 运行
+# Docker 运行 By NicoNewBeee
+- 1.新建文件夹： <br/>
+```bash
+mkdir mydocker 
+cd mydocker
+```
+- 2.客制化： <br/>
+将项目docker文件夹下的所有文件拷贝到mydocker<br/><br/>
+修改 aff.py   (用于自定义网站和sub内核的ip和端口) <br/><br/>
+修改 pref.ini（用于自定义默认规则）<br/><br/>
+修改 my.sh    (启动后执行的命令，默认5分钟进行自检)
+
+- 3.生成docker <br/>
+```bash
+  docker build -t dockername .
+```
+- 4.运行docker <br/>
+```bash
+  docker run -d --restart=always --name=subweb -p Web_Port:10086 -p Core_Port:10010 dockername
+```
+- 5.查看日志 <br/>
+```bash
+docker logs -f -t --tail 10 subweb
+```
+
+# Docker 运行 By du5
 > https://docker.io/gtary/subweb build by [@du5](https://t.me/Gtary)
 
 1. 拉取镜像
@@ -62,37 +87,6 @@ docker exec subweb tail /var/log/core.log -f
 docker exec subweb tail /var/log/web.log -f
 ```
 
-
-
-
-
-
-# Docker 运行 By NicoNewBeee
-
-- 1.新建文件夹： <br/>
-```bash
-mkdir mydocker 
-cd mydocker
-```
-- 2.客制化： <br/>
-以下所有操作均在mydocker文件夹下操作<br/>
-将docker文件夹下的所有文件拷贝到mydocker<br/>
-修改 aff.py   (用于自定义网站和sub内核的ip和端口) <br/>
-修改 pref.ini（用于自定义默认规则）<br/>
-修改 my.sh    (启动后执行的命令，默认5分钟进行自检)
-
-- 3.生成专属docker <br/>
-```bash
-  docker build -t dockername .
-```
-- 4.运行你的docker <br/>
-```bash
-  docker run -d --restart=always --name=subweb -p Web_Port:10086 -p Core_Port:10010 dockername
-```
-- 5. 查看日志 <br/>
-```bash
-docker logs -f -t --tail 10 subweb
-```
 # 联系我
    - 关注频道：https://t.me/niconewbeeeapi
    - 有用的话，欢迎TG打赏
