@@ -62,6 +62,36 @@ docker exec subweb tail /var/log/core.log -f
 docker exec subweb tail /var/log/web.log -f
 ```
 
+
+
+
+
+
+# Docker 运行 By NicoNewBeee
+
+- 1.新建文件夹： <br/>
+```bash
+mkdir mydocker <br/>
+cd mydocker
+```
+- 2.客制化： <br/>
+> 以下所有操作均在mydocker文件夹下操作<br/>
+> 将docker文件夹下的所有文件拷贝到mydocker<br/>
+> 修改aff.py(用于自定义网站和sub内核的ip和端口)  pref.ini（用于自定义默认规则） my.sh(启动后执行的命令，默认5分钟进行自检)
+
+- 3.生成专属docker <br/>
+```bash
+  docker build -t dockername .
+```
+- 4.运行你的docker <br/>
+```bash
+  docker run -d --restart=always --name=subweb -p Web_Port:10086 -p Core_Port:10010 dockername
+```
+```
+- 5. 查看日志 <br/>
+```bash
+docker logs -f -t --tail 10 subweb
+```
 # 联系我
    - 关注频道：https://t.me/niconewbeeeapi
    - 有用的话，欢迎TG打赏
