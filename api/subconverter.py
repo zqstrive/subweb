@@ -18,7 +18,7 @@ def Retry_request(url): #远程下载
             return res.text
         except Exception as e:
             i = i+1
-            print('重新下载：'+url)
+    return 'erro'
 
 def writeini(name,custom,method,ini):             # 自定义规则   
     try:
@@ -125,21 +125,21 @@ def getgroups(name,custom,method):             # 自定义规则
         return 'erro'
 
 
-
-
-
-def getini(ini):             # 自定义规则   
+def getini(iniin):             # 自定义规则   
     try:
-            if ini == '' or ini == None:   #不分组的情况
-                return ''          
-            else:
-                ini = Retry_request(ini)
-                rulesets = ini.split(';设置规则标志位')[1].replace('surge_ruleset=','@').replace('\n','')              
-                groups =  ini.split(';设置分组标志位')[1].replace('custom_proxy_group=','@').replace('\n','') 
-                inicustom = rulesets+'&'+groups               
-                return inicustom                        
+        if ';设置规则标志位' in iniin and ';设置分组标志位' in iniin :
+            rulesets = iniin.split(';设置规则标志位')[1].replace('surge_ruleset=','@').replace('\n','').replace('\r','')              
+            groups =  iniin.split(';设置分组标志位')[1].replace('custom_proxy_group=','@').replace('\n','').replace('\r','') 
+            inicustom = rulesets+'&'+groups               
+            return inicustom    
+        else:
+            ini = Retry_request(iniin)
+            rulesets = ini.split(';设置规则标志位')[1].replace('surge_ruleset=','@').replace('\n','')              
+            groups =  ini.split(';设置分组标志位')[1].replace('custom_proxy_group=','@').replace('\n','') 
+            inicustom = rulesets+'&'+groups               
+            return inicustom                                     
     except Exception as e:
-        print(e)
+        return 'erro'
 
 
 #getini('https://raw.githubusercontent.com/lzdnico/SSRClash/master/config/default.ini')

@@ -186,6 +186,8 @@ def inigroup():
                     pass
                 try:
                     ini1 = api.subconverter.getini(ini).split('&')
+                    if 'erro' in ini1 :
+                        return '检查远程配置文件是否正确'
                 except :
                     return '检查远程配置文件是否正确'
                 rulesets = str(safe_base64_encode(ini1[0])).split('\'')[1]
