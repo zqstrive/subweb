@@ -10,28 +10,32 @@
   ```
   - 2.下载源码：<br/><br/>
   ```bash
+  cd 
   git clone https://github.com/lzdnico/subweb.git 
   ```
   - 3.安装库： <br/><br/>
   ```bash
   pip3 install -I -r requirements.txt 
   ```
-  - 4.修改文件：<br/><br/>
+  - 4.修改文件(搭配步骤6)：<br/><br/>
   ```bash
   chmod 777 /root/subweb/config/subconverter 
   ```
   修改 api/aff.py  中的subip和apiip 端口默认情况下不用改<br/><br/>
-  - 5.开始运行：<br/><br/>
+  - 5.开始运行，带进程守护（无需执行步骤4）：<br/><br/>
   ```bash
     cd /root/subweb 
+    ./subweb.sh http:127.0.0.1:10086 http:127.0.0.1:10010
   ```
+    http:127.0.0.1:10086 为web前端地址<br/><br/>
+    http:127.0.0.1:10010 为sub后端地址<br/><br/>
+    想要修改web端口，需修改api.py的main函数<br/><br/>
+    想要修改sub端口，需修改/config/perf.ini的配置端口<br/><br/>
+  - 6.开始运行第二种方法：<br/><br/>
   ```bash
+    cd /root/subweb 
     python3 api.py 
-  ```
-  ```bash
     cd /root/subweb/config
-  ```
-  ```bash
     ./subconverter
   ```
   <br/><br/>
