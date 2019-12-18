@@ -15,6 +15,7 @@
   ```
   - 3.安装库： <br/><br/>
   ```bash
+  cd subweb
   pip3 install -I -r requirements.txt 
   ```
   - 4.修改文件(搭配步骤6)：<br/><br/>
