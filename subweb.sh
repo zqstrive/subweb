@@ -1,11 +1,11 @@
 #! /bin/sh 
 echo "-----------------------------------Start-------------------------------------"
-echo "-----------------------------------$WEB_HOST,$CORE_HOST------------------------"
+echo "-----------------------------------$1,$2------------------------"
 filename="/root/subweb/api/aff.py"
 cat>"${filename}"<<EOF
 aff = '不限制机场，规则生成失败，请检测调用格式。STC测试可用，注册地址：bilibili.stchk.cloud/auth/register?code=gzI5'   
-subip = '$CORE_HOST'     
-apiip = '$WEB_HOST'          
+apiip = '$1'
+subip = '$2'               
 EOF
 cat /root/subweb/api/aff.py
 chmod 777 /root/subweb/config/subconverter
