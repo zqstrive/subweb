@@ -1,30 +1,41 @@
 # 脚本功能
 
 [![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
-
-
-
-
-  - 项目基于Flask框架、subconverter内核
-
- 
-
+  - 项目基于Flask框架
+  - 项目基于subconverter：https://github.com/tindy2013/subconverter
 # 如何搭建
-  - 1.安装python3 依赖： <br/>
-  apt install -y python3-pip  git python3 <br/>
-  - 2.下载源码：<br/>
-  git clone https://github.com/lzdnico/subweb.git <br/>
-  - 3.安装库： <br/>
-  pip3 install -I -r requirements.txt <br/>
-  - 4.修改文件：<br/>
-  chmod 777 /root/subweb/config/subconverter <br/>
-  修改 api/aff.py  中的subip和apiip 端口默认情况下不用改<br/>
-  - 5.开始运行：<br/>
-    cd /root/subweb<br/>
-    python3 api.py <br/>
-    cd /root/subweb/config<br/>
-    ./subconverter<br/>
-  - 托管地址生成页面示意图<br/>
+  - 1.安装python3 依赖： <br/><br/>
+  ```bash
+  apt install -y python3-pip  git python3
+  ```
+  - 2.下载源码：<br/><br/>
+  ```bash
+  git clone https://github.com/lzdnico/subweb.git 
+  ```
+  - 3.安装库： <br/><br/>
+  ```bash
+  pip3 install -I -r requirements.txt 
+  ```
+  - 4.修改文件：<br/><br/>
+  ```bash
+  chmod 777 /root/subweb/config/subconverter 
+  ```
+  修改 api/aff.py  中的subip和apiip 端口默认情况下不用改<br/><br/>
+  - 5.开始运行：<br/><br/>
+  ```bash
+    cd /root/subweb 
+  ```
+  ```bash
+    python3 api.py 
+  ```
+  ```bash
+    cd /root/subweb/config
+  ```
+  ```bash
+    ./subconverter
+  ```
+  <br/><br/>
+  - 托管地址生成页面示意图<br/><br/>
   ![image](https://github.com/lzdnico/subweb/blob/test/images/index.png) <br/>
 
 # Docker 运行 By NicoNewBeee 
@@ -33,6 +44,7 @@
 docker pull niconewbeee/subweb:latest
 ```
 - 2.运行docker <br/>
+  WEB_HOST、CORE_HOST：参数修改为服务器的ip加端口号，或者是域名搭配反代
 ```bash
   docker run -d --restart=always --name=subweb -e WEB_HOST=http://serverip:Web_Port -e CORE_HOST=http://serverip:Core_Port -p Web_Port:10086 -p Core_Port:10010 niconewbeee/subweb
 ```
@@ -111,8 +123,7 @@ docker exec subweb tail /var/log/web.log -f
 
 # 联系我
    - 关注频道：https://t.me/niconewbeeeapi
-   - 有用的话，欢迎TG打赏
-   - https://t.me/NicoNewBeee
+   - 有用的话，欢迎打赏:https://t.me/niconewbeeeapi/134
 
 
 [//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
