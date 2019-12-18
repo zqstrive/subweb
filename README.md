@@ -27,10 +27,12 @@
     cd /root/subweb 
     ./subweb.sh http:127.0.0.1:10086 http:127.0.0.1:10010
   ```
-    http:127.0.0.1:10086 为web前端地址<br/><br/>
-    http:127.0.0.1:10010 为sub后端地址<br/><br/>
-    想要修改web端口，需修改api.py的main函数<br/><br/>
-    想要修改sub端口，需修改/config/perf.ini的配置端口<br/><br/>
+  ```bash
+    http:127.0.0.1:10086 为web前端地址
+    http:127.0.0.1:10010 为sub后端地址
+    想要修改web端口，需修改api.py的main函数
+    想要修改sub端口，需修改/config/perf.ini的配置端口
+  ```
   - 6.开始运行第二种方法：<br/><br/>
   ```bash
     cd /root/subweb 
