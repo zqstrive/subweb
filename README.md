@@ -25,6 +25,7 @@
   修改 api/aff.py  中的subip和apiip 端口默认情况下不用改<br/><br/>
   - 5.开始运行，带进程守护（无需执行步骤4）：<br/><br/>
   ```bash
+   chmod 777 /root//subweb/subweb.sh
     cd /root/subweb 
     ./subweb.sh http:127.0.0.1:10086 http:127.0.0.1:10010
   ```

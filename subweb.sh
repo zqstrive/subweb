@@ -9,7 +9,6 @@ apiip = '$WEB_HOST'
 EOF
 cat /root/subweb/api/aff.py
 chmod 777 /root/subweb/config/subconverter
-chmod chmod 777 /root//subweb/subweb.sh
 echo "-----------------------------------Update file----------------------------------------"
 echo "-------------------------------------While--------------------------------------------"
 while true
