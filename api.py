@@ -68,7 +68,11 @@ def basic():
                 if tool == 'clashr':
                         CustomGroupvmess = '{ip}/sub?target=clashr&url={sub}'.format(ip=api.aff.subip,sub=str(sub))
                         api2 = 'https://gfwsb.114514.best/sub?target=clashr&url={sub}'.format(sub=str(sub)) 
-                        return render_template('clashr.html',sub = s,custom="未填写",api=CustomGroupvmess,api2=api2)                       
+                        return render_template('clashr.html',sub = s,custom="未填写",api=CustomGroupvmess,api2=api2)    
+                if tool == 'clashnode':
+                        CustomGroupvmess = '{ip}/sub?target=clashr&list=true&url={sub}'.format(ip=api.aff.subip,sub=str(sub))
+                        api2 = 'https://gfwsb.114514.best/sub?target=clashr&list=true&url={sub}'.format(sub=str(sub)) 
+                        return render_template('clashr.html',sub = s,custom="未填写",api=CustomGroupvmess,api2=api2)                                            
                 if tool == 'surge':
                         CustomGroupvmess = '{ip}/sub?target=surge&url={sub}&ver=4'.format(ip=api.aff.subip,sub=str(sub))
                         api2 = 'https://gfwsb.114514.best/sub?target=surge&url={sub}'.format(sub=str(sub)) 
