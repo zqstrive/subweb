@@ -2,6 +2,10 @@
 [![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
   - 项目基于Flask框架
   - 项目基于subconverter：https://github.com/tindy2013/subconverter
+  - 配置文件版示例： https://github.com/lzdnico/subconverteriniexample
+  - 项目示例站点： https://subweb.niconewbeee.tk
+  - 托管地址生成页面示意图
+  ![image](https://github.com/lzdnico/subweb/blob/test/images/index.png) 
 # 如何运行
   - 1.安装python3 依赖： 
   ```bash
@@ -29,9 +33,6 @@
   想要修改web端口，需修改api.py的main函数
   想要修改sub端口，需修改config/perf.ini中的配置
   ```
-  - 托管地址生成页面示意图
-  ![image](https://github.com/lzdnico/subweb/blob/test/images/index.png) 
-
 # Docker 运行 By NicoNewBeee 
 - 1.拉取镜像： 
 ```bash
