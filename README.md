@@ -3,21 +3,21 @@
   - 项目基于Flask框架
   - 项目基于subconverter：https://github.com/tindy2013/subconverter
 # 如何运行
-  - 1.安装python3 依赖： <br/><br/>
+  - 1.安装python3 依赖： 
   ```bash
   apt install -y python3-pip  git python3
   ```
-  - 2.下载源码：<br/><br/>
+  - 2.下载源码：
   ```bash
   cd 
   git clone https://github.com/lzdnico/subweb.git 
   ```
-  - 3.安装库： <br/><br/>
+  - 3.安装库： 
   ```bash
   cd subweb
   pip3 install -I -r requirements.txt 
   ```
-  - 4.开始运行：<br/><br/>
+  - 4.开始运行：
   ```bash
   chmod 777 /root//subweb/subweb.sh
   cd /root/subweb 
@@ -29,73 +29,68 @@
   想要修改web端口，需修改api.py的main函数
   想要修改sub端口，需修改config/perf.ini中的配置
   ```
-  <br/><br/>
-  - 托管地址生成页面示意图<br/><br/>
-  ![image](https://github.com/lzdnico/subweb/blob/test/images/index.png) <br/>
+  - 托管地址生成页面示意图
+  ![image](https://github.com/lzdnico/subweb/blob/test/images/index.png) 
 
 # Docker 运行 By NicoNewBeee 
-- 1.拉取镜像： <br/>
+- 1.拉取镜像： 
 ```bash
 docker pull niconewbeee/subweb:latest
 ```
-- 2.运行docker <br/>
+- 2.运行docker 
 WEB_HOST、CORE_HOST：参数修改为服务器的ip以及端口号，或者是域名搭配反代
 -p 参数：WEB_HOST的端口Web_Port映射到10086，CORE_HOST的端口Core_Port映射到10010
 ```bash
 docker run -d --restart=always --name=subweb -e WEB_HOST=http://serverip:Web_Port -e CORE_HOST=http://serverip:Core_Port -p Web_Port:10086 -p Core_Port:10010 niconewbeee/subweb
 ```
-- 3.查看日志 <br/>
+- 3.查看日志 
 ```bash
 docker logs -f -t --tail 10 subweb
 ```
-- 4.停止 <br/>
+- 4.停止 
 ```bash
 docker stop subweb
 ```
-- 5.重启 <br/>
+- 5.重启 
 ```bash
 docker restart subweb
 ```
-- 6.删除 <br/>
+- 6.删除 
 ```bash
 docker rm -f subweb
 ```
 
 # Docker 运行 By NicoNewBeee 自编译版
-- 1.下载源码： <br/>
+- 1.下载源码： 
 ```bash
 git clone https://github.com/lzdnico/subweb.git 
 cd subweb
 ```
-- 2.客制化（可选）： <br/><br/>
-修改 config/pref.ini（可选，用于自定义默认规则）<br/><br/>
-修改 docker.sh (可选，启动后执行的命令，默认5分钟进行自检)<br/><br/>
+- 2.客制化（可选）：
+```bash
+修改 config/pref.ini（可选，用于自定义默认规则）
+修改 docker.sh (可选，启动后执行的命令，默认5分钟进行自检)
 修改 templates(可选)下html网页显示内容
-
-- 3.生成docker <br/>
+```
+- 3.生成docker
 ```bash
 docker build -t subweb .
 ```
-- 4.运行docker <br/>
+- 4.运行docker
 ```bash
 docker run -d --restart=always --name=subweb -e WEB_HOST=http://serverip:Web_Port -e CORE_HOST=http://serverip:Core_Port -p Web_Port:10086 -p Core_Port:10010 subweb
 ```
-- 5.查看日志 <br/>
+- 5.查看日志 
 ```bash
 docker logs -f -t --tail 10 subweb
 ```
-
 # Docker 运行 By du5
 > https://docker.io/gtary/subweb build by [@du5](https://t.me/Gtary)
-
 1. 拉取镜像
 ```bash
 docker pull gtary/subweb
 ```
 2. 运行 
-> WEB_HOST 和 CORE_HOST 分别填写服务器IP以及端口
-> -p 参数：WEB_HOST的端口映射到10086，CORE_HOST的端口映射到10010
-
 ```bash
 docker run -d --restart=always --name=subweb -e WEB_HOST=http://127.0.0.1:Web_Port -e CORE_HOST=http://127.0.0.1:Core_Port -p Web_Port:10086 -p Core_Port:10010 gtary/subweb
 ```
