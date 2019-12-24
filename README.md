@@ -4,8 +4,6 @@
   - 项目基于subconverter：https://github.com/tindy2013/subconverter
   - 配置文件版示例： https://github.com/lzdnico/subconverteriniexample
   - 项目示例站点： https://subweb.niconewbeee.tk
-  - 更新频道：https://t.me/niconewbeeeapi
-  - 打赏地址:https://t.me/niconewbeeeapi/134
   - 托管地址生成页面示意图
   ![image](https://github.com/lzdnico/subweb/blob/test/images/index.png) 
 # 环境搭建及运行
@@ -114,7 +112,9 @@ docker rm -f subweb
 docker exec subweb tail /var/log/core.log -f
 docker exec subweb tail /var/log/web.log -f
 ```
-
+# 联系我
+  - 更新频道：https://t.me/niconewbeeeapi
+  - 打赏地址:https://t.me/niconewbeeeapi/134
 
 [//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
 
