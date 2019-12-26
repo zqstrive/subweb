@@ -1,6 +1,5 @@
 #! /bin/sh 
 echo "-----------------------------------Start-------------------------------------"
-python3 /subweb/api/tg.py API测试版开始启动
 echo "------------------------------------While循环----------------------------------------"
 while true
 do
@@ -16,7 +15,6 @@ do
     then                            #重新启动服务器，或者扩展其它内容。
         cd /subweb/config
         ./subconverter &
-        python3 /subweb/api/tg.py API测试版后端掉线了，又自动重启了
     fi
     proc_name="python3"        #进程名
     proc_num()                      #查询进程数量
@@ -28,7 +26,6 @@ do
     number=$?                       #获取进程数量
     if [ $number -eq 0 ]            #如果进程数量为0
     then                            #重新启动服务器，或者扩展其它内容。
-        python3 /subweb/api/tg.py API测试版前端掉线了，又自动重启了
         python3 /subweb/api.py &   #运行web服务
     fi
 
