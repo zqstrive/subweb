@@ -10,6 +10,7 @@
   ```
   - 3.客制化（必须修改）：
   ```bash 
+  chmod 777 /root/subweb/config/subconverter                  修改后端权限
   \cp /root/subweb/docker/mydocker.sh /root/subweb/docker.sh  修改启动脚本
   chmod 777 /root/subweb/docker.sh                            修改启动脚本权限
   修改api/aff.py                                              subip 和 apiip 分别为docker映射前的前端地址和后端地址 

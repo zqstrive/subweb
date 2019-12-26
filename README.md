@@ -60,31 +60,33 @@ docker restart subweb
 ```bash
 docker rm -f subweb
 ```
-
-# Docker 运行 By NicoNewBeee 自编译版
-- 1.下载源码： 
-```bash
-git clone https://github.com/lzdnico/subweb.git 
-cd subweb
-```
-- 2.客制化（可选）：
-```bash
-修改 config/pref.ini（可选，用于自定义默认规则）
-修改 docker.sh (可选，启动后执行的命令，默认5分钟进行自检)
-修改 templates(可选)下html网页显示内容
-```
-- 3.生成docker
-```bash
-docker build -t subweb .
-```
-- 4.运行docker
-```bash
-docker run -d --restart=always --name=subweb -e WEB_HOST=http://serverip:Web_Port -e CORE_HOST=http://serverip:Core_Port -p Web_Port:10086 -p Core_Port:10010 subweb
-```
-- 5.查看日志 
-```bash
-docker logs -f -t --tail 10 subweb
-```
+# Docker 运行 By NicoNewBeee 自定义修改版
+  - 1.安装Docker运行环境： 
+  ```bash
+  docker pull niconewbeee/subweb:basic
+  ```
+  - 2.下载源码：
+  ```bash
+  cd 
+  git clone https://github.com/lzdnico/subweb.git 
+  ```
+  - 3.客制化（必须修改）：
+  ```bash 
+  chmod 777 /root/subweb/config/subconverter                  修改后端权限
+  \cp /root/subweb/docker/mydocker.sh /root/subweb/docker.sh  修改启动脚本
+  chmod 777 /root/subweb/docker.sh                            修改启动脚本权限
+  修改api/aff.py                                              subip 和 apiip 分别为docker映射前的前端地址和后端地址 
+  ```
+  - 4.客制化（可选）：
+  ```bash 
+  修改config/perf.ini                                          端口10010不用修改，可以通过docker映射自定义访问端口
+  修改templates                                                文件下的网页html
+  ```
+  - 5.开始运行：
+  -p 前端端口号：10086 -p 后端端口号：10010                      这个前/后端端口号需要与api/aff.py中的一致
+  ```bash 
+  docker run  -d --name=subweb --restart=always -v /root/subweb:/subweb -p 10086:10086 -p 10010:10010  niconewbeee/subweb:basic
+  ```
 # Docker 运行 By du5
 > https://docker.io/gtary/subweb build by [@du5](https://t.me/Gtary)
 1. 拉取镜像
