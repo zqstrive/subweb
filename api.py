@@ -177,6 +177,7 @@ def customgroup():
 def inigroup():
     try:
         if request.method == "POST":
+            iniflag = 'url'                                 #配置文件是本地配置或者远程配置标志位
             s = request.form['left']
             s = s.replace('\n','|').replace('\r','')
             if s.split('|')[-1]== '':
@@ -189,43 +190,33 @@ def inigroup():
                 except :
                     pass
                 try:
-                    ini1 = api.subconverter.getini(ini).split('&')
-                    if 'erro' in ini1 :
-                        return '检查远程配置文件是否正确'
+                    if ';设置规则标志位' in ini and ';设置分组标志位' in ini :
+                        ini1 = api.subconverter.getini(ini).split('&')
+                        if 'erro' in ini1 :
+                            return '检查远程配置文件是否正确'
+                        iniflag = 'file'                                #检测到本地配置，标志位设为file
+                        rulesets = str(safe_base64_encode(ini1[0])).split('\'')[1]
+                        groups = str(safe_base64_encode(ini1[1])).split('\'')[1]  
+                    else:
+                        ini = urllib.parse.quote(ini)
                 except :
-                    return '检查远程配置文件是否正确'
-                rulesets = str(safe_base64_encode(ini1[0])).split('\'')[1]
-                groups = str(safe_base64_encode(ini1[1])).split('\'')[1]               
-                if tool == 'clash':
-                        CustomGroupvmess = '{ip}/sub?target=clash&url={sub}&ruleset={rulesets}&groups={groups}'.format(ip=api.aff.subip,sub=str(sub),groups=groups,rulesets=rulesets)
-                        api2 = 'https://gfwsb.114514.best/sub?target=clash&url={sub}&ruleset={rulesets}&groups={groups}'.format(sub=str(sub),groups=groups,rulesets=rulesets) 
-                        return render_template('clash.html',sub = s,custom=ini,api=CustomGroupvmess,api2=api2)
-                if tool == 'clashr':
-                        CustomGroupvmess = '{ip}/sub?target=clashr&url={sub}&ruleset={rulesets}&groups={groups}'.format(ip=api.aff.subip,sub=str(sub),groups=groups,rulesets=rulesets)
-                        api2 = 'https://gfwsb.114514.best/sub?target=clashr&url={sub}&ruleset={rulesets}&groups={groups}'.format(sub=str(sub),groups=groups,rulesets=rulesets) 
-                        return render_template('clashr.html',sub = s,custom=ini,api=CustomGroupvmess,api2=api2)
+                    return '检查远程配置文件是否正确'    
                 if tool == 'surge':
+                    if iniflag == 'file':
                         CustomGroupvmess = '{ip}/sub?target=surge&url={sub}&ruleset={rulesets}&groups={groups}&ver=4'.format(ip=api.aff.subip,sub=str(sub),groups=groups,rulesets=rulesets)
                         api2 = 'https://gfwsb.114514.best/sub?target=surge&url={sub}&ruleset={rulesets}&groups={groups}&ver=4'.format(sub=str(sub),groups=groups,rulesets=rulesets) 
                         return render_template('surge.html',sub = s,custom=ini+'\n默认为surge4，参数为为ver=4。',api=CustomGroupvmess,api2=api2)
-                if tool == 'mellow':
-                        CustomGroupvmess = '{ip}/sub?target=mellow&url={sub}&ruleset={rulesets}&groups={groups}'.format(ip=api.aff.subip,sub=str(sub),groups=groups,rulesets=rulesets)
-                        api2 = 'https://gfwsb.114514.best/sub?target=mellow&url={sub}&ruleset={rulesets}&groups={groups}'.format(sub=str(sub),groups=groups,rulesets=rulesets) 
-                        return render_template('mellow.html',sub = s,custom=ini,api=CustomGroupvmess,api2=api2)
-                if tool == 'surfboard':
-                        CustomGroupvmess = '{ip}/sub?target=surfboard&url={sub}&ruleset={rulesets}&groups={groups}'.format(ip=api.aff.subip,sub=str(sub),groups=groups,rulesets=rulesets)
-                        api2 = 'https://gfwsb.114514.best/sub?target=surfboard&url={sub}&ruleset={rulesets}&groups={groups}'.format(sub=str(sub),groups=groups,rulesets=rulesets) 
-                        return render_template('surfboard.html',sub = s,custom=ini,api=CustomGroupvmess,api2=api2)
-                if tool == 'qxnode':
-                        CustomGroupvmess = '{ip}/sub?target=quanx&url={sub}'.format(ip=api.aff.subip,sub=str(sub))
-                        api2 = 'https://gfwsb.114514.best/sub?target=quanx&url={sub}'.format(sub=str(sub))
-                        return render_template('qxnode.html',sub = s,custom="QuanX Node List 不支持客制化 ",api=CustomGroupvmess,api2=api2)            
-                if tool == 'surnode':
-                        CustomGroupvmess = '{ip}/sub?target=surge&url={sub}&ver=4&list=true&udp=true&tfo=true'.format(ip=api.aff.subip,sub=str(sub))
-                        api2 = 'https://gfwsb.114514.best/sub?target=surge&url={sub}&ver=4&list=true&udp=true&tfo=true'.format(sub=str(sub))
-                        return render_template('surgenode.html',sub = s,custom="默认为surge4，参数为为ver=4。默认udp=true,tfo=true",api=CustomGroupvmess,api2=api2)                                  
-                else:
-                    return render_template('ini.html')    
+                    if iniflag == 'url':
+                        CustomGroupvmess = '{ip}/sub?target={tar}&url={sub}&config={config}&ver=4'.format(tar=tool,ip=api.aff.subip,sub=str(sub),config=ini)
+                        api2 = 'https://gfwsb.114514.best/sub?target={tar}&url={sub}&config={config}&ver=4'.format(tar=tool,sub=str(sub),config=ini) 
+                        return render_template('surge.html',sub = s,custom=ini+'\n'+'默认为surge4，参数为为ver=4。',api=CustomGroupvmess,api2=api2)                        
+                if iniflag == 'file':
+                    CustomGroupvmess = '{ip}/sub?target={tar}&url={sub}&ruleset={rulesets}&groups={groups}'.format(tar=tool,ip=api.aff.subip,sub=str(sub),groups=groups,rulesets=rulesets)
+                    api2 = 'https://gfwsb.114514.best/sub?target={tar}&url={sub}&ruleset={rulesets}&groups={groups}'.format(tar=tool,sub=str(sub),groups=groups,rulesets=rulesets) 
+                if iniflag == 'url':
+                    CustomGroupvmess = '{ip}/sub?target={tar}&url={sub}&config={config}'.format(tar=tool,ip=api.aff.subip,sub=str(sub),config=ini)
+                    api2 = 'https://gfwsb.114514.best/sub?target={tar}&url={sub}&config={config}'.format(tar=tool,sub=str(sub),config=ini) 
+                return render_template('{tool}.html'.format(tool=tool),sub = s,custom=ini,api=CustomGroupvmess,api2=api2)
             else:
                 return '订阅不规范'
         return render_template('ini.html')

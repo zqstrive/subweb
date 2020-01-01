@@ -127,17 +127,20 @@ def getgroups(name,custom,method):             # 自定义规则
 
 def getini(iniin):             # 自定义规则   
     try:
-        if ';设置规则标志位' in iniin and ';设置分组标志位' in iniin :
-            rulesets = iniin.split(';设置规则标志位')[1].replace('surge_ruleset=','@').replace('\n','').replace('\r','')              
-            groups =  iniin.split(';设置分组标志位')[1].replace('custom_proxy_group=','@').replace('\n','').replace('\r','') 
-            inicustom = rulesets+'&'+groups               
-            return inicustom    
+        rulesets = iniin.split(';设置规则标志位')[1].replace('surge_ruleset=','@').replace('\n','').replace('\r','')              
+        groups =  iniin.split(';设置分组标志位')[1].replace('custom_proxy_group=','@').replace('\n','').replace('\r','') 
+        inicustom = rulesets+'&'+groups               
+        return inicustom    
+        """
         else:
+            
             ini = Retry_request(iniin)
             rulesets = ini.split(';设置规则标志位')[1].replace('surge_ruleset=','@').replace('\n','')              
             groups =  ini.split(';设置分组标志位')[1].replace('custom_proxy_group=','@').replace('\n','') 
-            inicustom = rulesets+'&'+groups               
-            return inicustom                                     
+            inicustom = rulesets+'&'+groups 
+                         
+            return inicustom 
+        """                                     
     except Exception as e:
         return 'erro'
 
