@@ -33,33 +33,6 @@
   想要修改web端口，需修改api.py的main函数
   想要修改sub端口，需修改config/perf.ini中的配置
   ```
-# Docker 运行 By NicoNewBeee 
-- 1.拉取镜像： 
-```bash
-docker pull niconewbeee/subweb:latest
-```
-- 2.运行docker 
-WEB_HOST、CORE_HOST：参数修改为服务器的ip以及端口号，或者是域名搭配反代
--p 参数：WEB_HOST的端口Web_Port映射到10086，CORE_HOST的端口Core_Port映射到10010
-```bash
-docker run -d --restart=always --name=subweb -e WEB_HOST=http://serverip:Web_Port -e CORE_HOST=http://serverip:Core_Port -p Web_Port:10086 -p Core_Port:10010 niconewbeee/subweb
-```
-- 3.查看日志 
-```bash
-docker logs -f -t --tail 10 subweb
-```
-- 4.停止 
-```bash
-docker stop subweb
-```
-- 5.重启 
-```bash
-docker restart subweb
-```
-- 6.删除 
-```bash
-docker rm -f subweb
-```
 # Docker 运行 By NicoNewBeee 自定义修改版
   - 1.安装Docker运行环境： 
   ```bash
@@ -87,7 +60,36 @@ docker rm -f subweb
   ```bash 
   docker run  -d --name=subweb --restart=always -v /root/subweb:/subweb -p 10086:10086 -p 10010:10010  niconewbeee/subweb:basic
   ```
-# Docker 运行 By du5
+  - 6.太复杂？：
+  看看subweb/docker 文件下的update.sh 可以一键更新最新代码，并一键覆盖自定义修改内容。
+# Docker 运行 By NicoNewBeee （停止更新）
+- 1.拉取镜像： 
+```bash
+docker pull niconewbeee/subweb:latest
+```
+- 2.运行docker 
+WEB_HOST、CORE_HOST：参数修改为服务器的ip以及端口号，或者是域名搭配反代
+-p 参数：WEB_HOST的端口Web_Port映射到10086，CORE_HOST的端口Core_Port映射到10010
+```bash
+docker run -d --restart=always --name=subweb -e WEB_HOST=http://serverip:Web_Port -e CORE_HOST=http://serverip:Core_Port -p Web_Port:10086 -p Core_Port:10010 niconewbeee/subweb
+```
+- 3.查看日志 
+```bash
+docker logs -f -t --tail 10 subweb
+```
+- 4.停止 
+```bash
+docker stop subweb
+```
+- 5.重启 
+```bash
+docker restart subweb
+```
+- 6.删除 
+```bash
+docker rm -f subweb
+```
+# Docker 运行 By du5 (旧版)
 > https://docker.io/gtary/subweb build by [@du5](https://t.me/Gtary)
 1. 拉取镜像
 ```bash
