@@ -111,10 +111,10 @@ def getgroups(name,custom,method):             # 自定义规则
                         proxygroup =   '@🔰 节点选择`select'+groupname+'[]DIRECT'\
                                         '@📲 电报吹水`select`[]🔰 节点选择`'+groupname+'[]DIRECT'\
                                         '@📹 YouTube`select`[]🔰 节点选择`'+groupname+'[]DIRECT'\
-                                        '@🎥 NETFLIX`select`[]🔰 节点选择`'+groupname+'`(NF|解锁)`[]DIRECT'\
+                                        '@🎥 NETFLIX`select`[]🔰 节点选择`'+groupname+'[]DIRECT'\
                                         '@📺 巴哈姆特`select`[]🔰 节点选择`'+groupname+'[]DIRECT'\
                                         '@🌍 国外媒体`select`[]🔰 节点选择`'+groupname+'[]DIRECT'\
-                                        '@🌏 国内媒体`select`[]DIRECT`[]🔰 节点选择'\
+                                        '@🌏 港台媒体`select`[]DIRECT`'+groupname+'[]🔰 节点选择'\
                                         '@🍎 苹果服务`select`[]DIRECT`[]🔰 节点选择`'\
                                         '@🛑 全球拦截`select`[]REJECT`[]DIRECT'\
                                         '@🐟 漏网之鱼`select`[]🔰 节点选择`[]DIRECT`'+groupname+''
