@@ -77,6 +77,10 @@ def basic():
                         CustomGroupvmess = '{ip}/sub?target=surge&url={sub}&ver=4'.format(ip=api.aff.subip,sub=str(sub))
                         api2 = 'https://gfwsb.114514.best/sub?target=surge&url={sub}'.format(sub=str(sub)) 
                         return render_template('surge.html',sub = s,custom="默认为surge4，参数为为ver=4。",api=CustomGroupvmess,api2=api2)
+                if tool == 'qx':
+                        CustomGroupvmess = '{ip}/sub?target=quanx&url={sub}'.format(ip=api.aff.subip,sub=str(sub))
+                        api2 = 'https://gfwsb.114514.best/sub?target=quanx&url={sub}'.format(sub=str(sub))
+                        return render_template('qx.html',sub = s,custom="未填写",api=CustomGroupvmess,api2=api2)  
                 if tool == 'mellow':
                         CustomGroupvmess = '{ip}/sub?target=mellow&url={sub}'.format(ip=api.aff.subip,sub=str(sub))
                         api2 = 'https://gfwsb.114514.best/sub?target=mellow&url={sub}'.format(sub=str(sub)) 
@@ -86,8 +90,8 @@ def basic():
                         api2 = 'https://gfwsb.114514.best/sub?target=surfboard&url={sub}'.format(sub=str(sub)) 
                         return render_template('surfboard.html',sub = s,custom="未填写",api=CustomGroupvmess,api2=api2)
                 if tool == 'qxnode':
-                        CustomGroupvmess = '{ip}/sub?target=quanx&url={sub}'.format(ip=api.aff.subip,sub=str(sub))
-                        api2 = 'https://gfwsb.114514.best/sub?target=quanx&url={sub}'.format(sub=str(sub))
+                        CustomGroupvmess = '{ip}/sub?target=quanx&url={sub}&list=true'.format(ip=api.aff.subip,sub=str(sub))
+                        api2 = 'https://gfwsb.114514.best/sub?target=quanx&url={sub}&list=true'.format(sub=str(sub))
                         return render_template('qxnode.html',sub = s,custom="未填写",api=CustomGroupvmess,api2=api2)            
                 if tool == 'surnode':
                         CustomGroupvmess = '{ip}/sub?target=surge&url={sub}&ver=4&list=true&udp=true&tfo=true'.format(ip=api.aff.subip,sub=str(sub))
