@@ -260,6 +260,23 @@ def lists():
                         CustomGroupvmess = '{ip}/sub?target=surge&url={sub}&ver=4&list=true&udp=true&tfo=true&include={custom}'.format(ip=api.aff.subip,sub=str(sub),custom=encodecustom)
                         api2 = 'https://gfwsb.114514.best/sub?target=surge&url={sub}&ver=4&list=true&udp=true&tfo=true&include={custom}'.format(sub=str(sub),custom=encodecustom)
                         return render_template('surgenode.html',sub = s,custom=custom,api=CustomGroupvmess,api2=api2)                                 
+                if tool == 'ssrnode':
+                        CustomGroupvmess = '{ip}/sub?target=ssr&url={sub}&list=true&include={custom}'.format(ip=api.aff.subip,sub=str(sub),custom=encodecustom)
+                        api2 = 'https://gfwsb.114514.best/sub?target=ssr&url={sub}&list=true&include={custom}'.format(sub=str(sub),custom=encodecustom)
+                        return render_template('othernode.html',sub = s,custom=custom,api=CustomGroupvmess,api2=api2)  
+                if tool == 'quannode':
+                        CustomGroupvmess = '{ip}/sub?target=quan&url={sub}&list=true&include={custom}'.format(ip=api.aff.subip,sub=str(sub),custom=encodecustom)
+                        api2 = 'https://gfwsb.114514.best/sub?target=quan&url={sub}&list=true&include={custom}'.format(sub=str(sub),custom=encodecustom)
+                        return render_template('othernode.html',sub = s,custom=custom,api=CustomGroupvmess,api2=api2)   
+                if tool == 'ssdnode':
+                        CustomGroupvmess = '{ip}/sub?target=ssd&url={sub}&list=true&include={custom}'.format(ip=api.aff.subip,sub=str(sub),custom=encodecustom)
+                        api2 = 'https://gfwsb.114514.best/sub?target=ssd&url={sub}&list=true&include={custom}'.format(sub=str(sub),custom=encodecustom)
+                        return render_template('othernode.html',sub = s,custom=custom,api=CustomGroupvmess,api2=api2)  
+                if tool == 'ssnode':
+                        CustomGroupvmess = '{ip}/sub?target=ss&url={sub}&list=true&include={custom}'.format(ip=api.aff.subip,sub=str(sub),custom=encodecustom)
+                        api2 = 'https://gfwsb.114514.best/sub?target=ss&url={sub}&list=true&include={custom}'.format(sub=str(sub),custom=encodecustom)
+                        return render_template('othernode.html',sub = s,custom=custom,api=CustomGroupvmess,api2=api2)  
+                
                 else:
                     return render_template('basic.html')    
             else:
