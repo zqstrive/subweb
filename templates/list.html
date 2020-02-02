@@ -1,0 +1,75 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>❤️ STC Rule Generator ️️❤️</title>
+    <link href="/static/css/style.min.css" media="all" rel="stylesheet" type="text/css" />
+</head>
+
+<body>  
+    <div class="container">
+            <header>
+                <h1>🚀 STC Api Rule Generator 🚁</h1>
+            </header>
+
+            <!-- Proxy tools -->
+        <form method="POST" name = "form1">
+
+            <div class="card" >
+                <h2>🤡 1.填入需要的节点【正则】</h2>
+                <textarea  name = "custom1" cols="70" rows="5" id="custom" placeholder="节点过滤正则表达式，最简单的可以填写：香港" >{{ custom1  }}</textarea>                        
+            </div>
+            <div class="card" >
+                <h2>🤡 2.填入订阅地址，多个换行输入</h2>
+                <textarea  name = "left" cols="70" rows="5" id="custom" placeholder="填写订阅地址" >{{ sub  }}</textarea>                        
+            </div>
+
+            <div class="card" >
+                <h2> 🔢 3.选择代理软件</h2>
+                <div id="proxy_tool" onchange="selChange()">
+                    <div class="autobar">
+                     
+                        <div class="pretty p-icon p-round p-plain p-smooth">
+                                <input type="radio" name="tool" value="qxnode">
+                                <div class="state p-success-o">
+                                        <i class="icon mdi mdi-transition-masked"></i>
+                                    <label>QuanX-Node-List</label>
+                                </div>
+                        </div>   
+                        <div class="pretty p-icon p-round p-plain p-smooth">
+                            <input type="radio" name="tool" value="surnode" >
+                            <div class="state p-success-o">
+                                <i class="icon mdi mdi-transition-masked"></i>
+                                <label>Surge-Node-List</label>
+                            </div>
+                        </div>  
+                        <div class="pretty p-icon p-round p-plain p-smooth">
+                            <input type="radio" name="tool" value="clashnode" >
+                            <div class="state p-success-o">
+                                <i class="icon mdi mdi-transition-masked"></i>
+                                <label>Clash-Node-List</label>
+                            </div>
+                        </div> 
+                    </div>                    
+                </div>
+            </div> 
+
+            <div class="card" >
+                <h2> 👌 4.一切准备就绪了</h2>
+            <div style="text-align:center; vertical-align:middel;">
+                <input  type="submit" class="card" name= 'submit' value = "🔥 点击生成托管地址吧 🍩""/>
+            </div>
+            </div>
+                           
+        </form>          
+        <footer>        
+        <p> &copy;<a href="https://weibo.com/hackl0us">@Hackl0us</a>.<a href="https://weibo.com/haxck"> 美工</a>.<a href="https://github.com/tindy2013/subconverter"> API源码</a>.<a>@NicoNewBeee</a></p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -45,6 +45,8 @@ def login():
             return redirect(ip+'customgroup')
         if request.form['submit'] == '配置文件版':
             return redirect(ip+'ini')
+        if request.form['submit'] == '节点过滤版':
+            return redirect(ip+'list')
     return render_template('login.html')
 
 @app.route('/basic', methods=['GET', 'POST'])
@@ -225,6 +227,44 @@ def inigroup():
                 return '订阅不规范'
         return render_template('ini.html')
         
+    except Exception as e:
+        return e
+
+
+@app.route('/list', methods=['GET', 'POST'])
+def lists():
+    try:
+        if request.method == "POST":
+            s = request.form['left']
+            s = s.replace('\n','|').replace('\r','')
+            if s.split('|')[-1]== '':
+                s = s[:-1]        
+            if '://' in s:
+                sub = urllib.parse.quote(s)
+                try:
+                    tool=str(request.values.get('tool'))
+                    custom = request.form['custom1']
+                    encodecustom=urllib.parse.quote(custom)
+                except :
+                    pass
+                  
+                if tool == 'clashnode':
+                        CustomGroupvmess = '{ip}/sub?target=clashr&list=true&url={sub}&include={custom}'.format(ip=api.aff.subip,sub=str(sub),custom=encodecustom)
+                        api2 = 'https://gfwsb.114514.best/sub?target=clashr&list=true&url={sub}&include={custom}'.format(sub=str(sub),custom=encodecustom) 
+                        return render_template('clashr.html',sub = s,custom=custom,api=CustomGroupvmess,api2=api2)                                            
+                if tool == 'qxnode':
+                        CustomGroupvmess = '{ip}/sub?target=quanx&url={sub}&list=true&include={custom}'.format(ip=api.aff.subip,sub=str(sub),custom=encodecustom)
+                        api2 = 'https://gfwsb.114514.best/sub?target=quanx&url={sub}&list=true&include={custom}'.format(sub=str(sub),custom=encodecustom)
+                        return render_template('qxnode.html',sub = s,custom=custom,api=CustomGroupvmess,api2=api2)            
+                if tool == 'surnode':
+                        CustomGroupvmess = '{ip}/sub?target=surge&url={sub}&ver=4&list=true&udp=true&tfo=true&include={custom}'.format(ip=api.aff.subip,sub=str(sub),custom=encodecustom)
+                        api2 = 'https://gfwsb.114514.best/sub?target=surge&url={sub}&ver=4&list=true&udp=true&tfo=true&include={custom}'.format(sub=str(sub),custom=encodecustom)
+                        return render_template('surgenode.html',sub = s,custom=custom,api=CustomGroupvmess,api2=api2)                                 
+                else:
+                    return render_template('basic.html')    
+            else:
+                return '订阅不规范'
+        return render_template('list.html')
     except Exception as e:
         return e
 
