@@ -46,9 +46,8 @@
   - 3.客制化（必须修改）：
   ```bash 
   chmod 777 /root/subweb/config/subconverter                  修改后端权限
-  \cp /root/subweb/docker/mydocker.sh /root/subweb/docker.sh  修改启动脚本
   chmod 777 /root/subweb/docker.sh                            修改启动脚本权限
-  修改api/aff.py                                              subip 和 apiip 分别为docker映射前的前端地址和后端地址 
+  修改api/aff.py                                               subip 和 apiip 分别为docker映射前的前端地址和后端地址 
   ```
   - 4.客制化（可选）：
   ```bash 
@@ -62,33 +61,24 @@
   ```
   - 6.太复杂？：
   看看subweb/docker 文件下的update.sh 可以一键更新最新代码，并一键覆盖自定义修改内容。
-# Docker 运行 By NicoNewBeee （停止更新）
-- 1.拉取镜像： 
-```bash
-docker pull niconewbeee/subweb:latest
-```
-- 2.运行docker 
-WEB_HOST、CORE_HOST：参数修改为服务器的ip以及端口号，或者是域名搭配反代
--p 参数：WEB_HOST的端口Web_Port映射到10086，CORE_HOST的端口Core_Port映射到10010
-```bash
-docker run -d --restart=always --name=subweb -e WEB_HOST=http://serverip:Web_Port -e CORE_HOST=http://serverip:Core_Port -p Web_Port:10086 -p Core_Port:10010 niconewbeee/subweb
-```
-- 3.查看日志 
+
+  - 7.查看日志 
 ```bash
 docker logs -f -t --tail 10 subweb
 ```
-- 4.停止 
+- 8.停止 
 ```bash
 docker stop subweb
 ```
-- 5.重启 
+- 9.重启 
 ```bash
 docker restart subweb
 ```
-- 6.删除 
+- 10.删除 
 ```bash
 docker rm -f subweb
 ```
+
 # Docker 运行 By du5 (旧版)
 > https://docker.io/gtary/subweb build by [@du5](https://t.me/Gtary)
 1. 拉取镜像
