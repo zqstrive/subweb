@@ -63,10 +63,6 @@ def basic():
                     tool=str(request.values.get('tool'))
                 except :
                     pass
-                if tool == 'clash':
-                        CustomGroupvmess = '{ip}/sub?target=clash&url={sub}'.format(ip=api.aff.subip,sub=str(sub))
-                        api2 = 'https://gfwsb.114514.best/sub?target=clash&url={sub}'.format(sub=str(sub)) 
-                        return render_template('clash.html',sub = s,custom="未填写",api=CustomGroupvmess,api2=api2)
                 if tool == 'clashr':
                         CustomGroupvmess = '{ip}/sub?target=clashr&url={sub}'.format(ip=api.aff.subip,sub=str(sub))
                         api2 = 'https://gfwsb.114514.best/sub?target=clashr&url={sub}'.format(sub=str(sub)) 
@@ -141,12 +137,7 @@ def customgroup():
                 try:
                     tool=str(request.values.get('tool'))
                 except :
-                    pass
-               
-                if tool == 'clash':
-                        CustomGroupvmess = '{ip}/sub?target=clash&url={sub}&groups={groups}'.format(ip=api.aff.subip,sub=str(sub),groups=groups)
-                        api2 = 'https://gfwsb.114514.best/sub?target=clash&url={sub}'.format(sub=str(sub)) 
-                        return render_template('clash.html',sub = s,custom=n+c+method+'  备用暂时不支持',api=CustomGroupvmess,api2=api2)
+                    pass              
                 if tool == 'clashr':
                         CustomGroupvmess = '{ip}/sub?target=clashr&url={sub}&groups={groups}'.format(ip=api.aff.subip,sub=str(sub),groups=groups)
                         api2 = 'https://gfwsb.114514.best/sub?target=clashr&url={sub}'.format(sub=str(sub)) 
@@ -245,37 +236,39 @@ def lists():
                     tool=str(request.values.get('tool'))
                     custom = request.form['custom1']
                     encodecustom=urllib.parse.quote(custom)
+                    excustom = request.form['custom2']
+                    encodeexcustom=urllib.parse.quote(excustom)
                 except :
                     pass
-                  
+                yourcustom = '包含的节点:'+custom+'           去掉的节点:'+excustom  
                 if tool == 'clashnode':
-                        CustomGroupvmess = '{ip}/sub?target=clashr&list=true&url={sub}&include={custom}'.format(ip=api.aff.subip,sub=str(sub),custom=encodecustom)
-                        api2 = 'https://gfwsb.114514.best/sub?target=clashr&list=true&url={sub}&include={custom}'.format(sub=str(sub),custom=encodecustom) 
-                        return render_template('clashr.html',sub = s,custom=custom,api=CustomGroupvmess,api2=api2)                                            
+                        CustomGroupvmess = '{ip}/sub?target=clashr&list=true&url={sub}&include={custom}&exclude={custom2}'.format(custom2=encodeexcustom,ip=api.aff.subip,sub=str(sub),custom=encodecustom)
+                        api2 = 'https://gfwsb.114514.best/sub?target=clashr&list=true&url={sub}&include={custom}&exclude={custom2}'.format(custom2=encodeexcustom,sub=str(sub),custom=encodecustom) 
+                        return render_template('clashr.html',sub = s,custom=yourcustom,api=CustomGroupvmess,api2=api2)                                            
                 if tool == 'qxnode':
-                        CustomGroupvmess = '{ip}/sub?target=quanx&url={sub}&list=true&include={custom}'.format(ip=api.aff.subip,sub=str(sub),custom=encodecustom)
-                        api2 = 'https://gfwsb.114514.best/sub?target=quanx&url={sub}&list=true&include={custom}'.format(sub=str(sub),custom=encodecustom)
-                        return render_template('qxnode.html',sub = s,custom=custom,api=CustomGroupvmess,api2=api2)            
+                        CustomGroupvmess = '{ip}/sub?target=quanx&url={sub}&list=true&include={custom}&exclude={custom2}'.format(custom2=encodeexcustom,ip=api.aff.subip,sub=str(sub),custom=encodecustom)
+                        api2 = 'https://gfwsb.114514.best/sub?target=quanx&url={sub}&list=true&include={custom}&exclude={custom2}'.format(custom2=encodeexcustom,sub=str(sub),custom=encodecustom)
+                        return render_template('qxnode.html',sub = s,custom=yourcustom,api=CustomGroupvmess,api2=api2)            
                 if tool == 'surnode':
-                        CustomGroupvmess = '{ip}/sub?target=surge&url={sub}&ver=4&list=true&udp=true&tfo=true&include={custom}'.format(ip=api.aff.subip,sub=str(sub),custom=encodecustom)
-                        api2 = 'https://gfwsb.114514.best/sub?target=surge&url={sub}&ver=4&list=true&udp=true&tfo=true&include={custom}'.format(sub=str(sub),custom=encodecustom)
-                        return render_template('surgenode.html',sub = s,custom=custom,api=CustomGroupvmess,api2=api2)                                 
+                        CustomGroupvmess = '{ip}/sub?target=surge&url={sub}&ver=4&list=true&udp=true&tfo=true&include={custom}&exclude={custom2}'.format(custom2=encodeexcustom,ip=api.aff.subip,sub=str(sub),custom=encodecustom)
+                        api2 = 'https://gfwsb.114514.best/sub?target=surge&url={sub}&ver=4&list=true&udp=true&tfo=true&include={custom}&exclude={custom2}'.format(custom2=encodeexcustom,sub=str(sub),custom=encodecustom)
+                        return render_template('surgenode.html',sub = s,custom=yourcustom,api=CustomGroupvmess,api2=api2)                                 
                 if tool == 'ssrnode':
-                        CustomGroupvmess = '{ip}/sub?target=ssr&url={sub}&list=true&include={custom}'.format(ip=api.aff.subip,sub=str(sub),custom=encodecustom)
-                        api2 = 'https://gfwsb.114514.best/sub?target=ssr&url={sub}&list=true&include={custom}'.format(sub=str(sub),custom=encodecustom)
-                        return render_template('othernode.html',sub = s,custom=custom,api=CustomGroupvmess,api2=api2)  
+                        CustomGroupvmess = '{ip}/sub?target=ssr&url={sub}&list=true&include={custom}&exclude={custom2}'.format(custom2=encodeexcustom,ip=api.aff.subip,sub=str(sub),custom=encodecustom)
+                        api2 = 'https://gfwsb.114514.best/sub?target=ssr&url={sub}&list=true&include={custom}&exclude={custom2}'.format(custom2=encodeexcustom,sub=str(sub),custom=encodecustom)
+                        return render_template('othernode.html',sub = s,custom=yourcustom,api=CustomGroupvmess,api2=api2)  
                 if tool == 'quannode':
-                        CustomGroupvmess = '{ip}/sub?target=quan&url={sub}&list=true&include={custom}'.format(ip=api.aff.subip,sub=str(sub),custom=encodecustom)
-                        api2 = 'https://gfwsb.114514.best/sub?target=quan&url={sub}&list=true&include={custom}'.format(sub=str(sub),custom=encodecustom)
-                        return render_template('othernode.html',sub = s,custom=custom,api=CustomGroupvmess,api2=api2)   
+                        CustomGroupvmess = '{ip}/sub?target=quan&url={sub}&list=true&include={custom}&exclude={custom2}'.format(custom2=encodeexcustom,ip=api.aff.subip,sub=str(sub),custom=encodecustom)
+                        api2 = 'https://gfwsb.114514.best/sub?target=quan&url={sub}&list=true&include={custom}&exclude={custom2}'.format(custom2=encodeexcustom,sub=str(sub),custom=encodecustom)
+                        return render_template('othernode.html',sub = s,custom=yourcustom,api=CustomGroupvmess,api2=api2)   
                 if tool == 'ssdnode':
-                        CustomGroupvmess = '{ip}/sub?target=ssd&url={sub}&list=true&include={custom}'.format(ip=api.aff.subip,sub=str(sub),custom=encodecustom)
-                        api2 = 'https://gfwsb.114514.best/sub?target=ssd&url={sub}&list=true&include={custom}'.format(sub=str(sub),custom=encodecustom)
-                        return render_template('othernode.html',sub = s,custom=custom,api=CustomGroupvmess,api2=api2)  
+                        CustomGroupvmess = '{ip}/sub?target=ssd&url={sub}&list=true&include={custom}&exclude={custom2}'.format(custom2=encodeexcustom,ip=api.aff.subip,sub=str(sub),custom=encodecustom)
+                        api2 = 'https://gfwsb.114514.best/sub?target=ssd&url={sub}&list=true&include={custom}&exclude={custom2}'.format(custom2=encodeexcustom,sub=str(sub),custom=encodecustom)
+                        return render_template('othernode.html',sub = s,custom=yourcustom,api=CustomGroupvmess,api2=api2)  
                 if tool == 'ssnode':
-                        CustomGroupvmess = '{ip}/sub?target=ss&url={sub}&list=true&include={custom}'.format(ip=api.aff.subip,sub=str(sub),custom=encodecustom)
-                        api2 = 'https://gfwsb.114514.best/sub?target=ss&url={sub}&list=true&include={custom}'.format(sub=str(sub),custom=encodecustom)
-                        return render_template('othernode.html',sub = s,custom=custom,api=CustomGroupvmess,api2=api2)  
+                        CustomGroupvmess = '{ip}/sub?target=ss&url={sub}&list=true&include={custom}&exclude={custom2}'.format(custom2=encodeexcustom,ip=api.aff.subip,sub=str(sub),custom=encodecustom)
+                        api2 = 'https://gfwsb.114514.best/sub?target=ss&url={sub}&list=true&include={custom}&exclude={custom2}'.format(custom2=encodeexcustom,sub=str(sub),custom=encodecustom)
+                        return render_template('othernode.html',sub = s,custom=yourcustom,api=CustomGroupvmess,api2=api2)  
                 
                 else:
                     return render_template('basic.html')    

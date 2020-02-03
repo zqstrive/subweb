@@ -21,8 +21,11 @@
         <form method="POST" name = "form1">
 
             <div class="card" >
-                <h2>🤡 1.填入需要的节点【正则】</h2>
-                <textarea  name = "custom1" cols="70" rows="5" id="custom" placeholder="节点过滤正则表达式，最简单的可以填写：香港" >{{ custom1  }}</textarea>                        
+                <h2>🤡 1.节点过滤</h2>
+                <h4>需要包含的节点</h4>
+                <textarea  name = "custom1" cols="70" rows="5" id="custom" placeholder="节点名称关键字，支持正则" >{{ custom1  }}</textarea>  
+                <h4>需要去掉的节点</h4>   
+                <textarea  name = "custom2" cols="70" rows="5" id="custom" placeholder="节点名称关键字，支持正则" >{{ custom2 }}</textarea>                      
             </div>
             <div class="card" >
                 <h2>🤡 2.填入订阅地址，多个换行输入</h2>
