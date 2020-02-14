@@ -15,6 +15,7 @@ import api.subconverter
 import api.aff
 import api.getini
 import api.admin
+import os
 from flask import Flask,render_template,request
 urllib3.disable_warnings()
 
@@ -296,6 +297,7 @@ def lists():
 @app.route('/ruleset', methods=['GET', 'POST'])
 def ruleset():
     try:
+        
         if request.method == "POST":
             if request.form['submit'] == '点击添加分流':            
                 ori1 = request.form['rulecustom']+'\n'
@@ -326,21 +328,28 @@ def ruleset():
 def admin():
     try:
         if request.method == "POST":
-            s = request.form['passwd']     
-            if api.aff.passwd == s:
-                try:
-                    #web = request.form['web']                    
-                    #sub = request.form['sub']               
-                    content = request.form.get('content')
-                    fileadd = request.form.get('file')
-           
-                except :
-                    return '出现BUG，请反馈'
-                #api.admin.writeaddress(web,sub)
-                api.admin.writefile(content,fileadd)
-                return render_template('admin.html',content=content,file=fileadd)              
-            else:
-                return '密码错误'
+            if request.form['submit'] == '上传配置':
+                s = request.form['passwd']     
+                if api.aff.passwd == s:
+                    try:
+                        #web = request.form['web']                    
+                        #sub = request.form['sub']               
+                        content = request.form.get('content')
+                        fileadd = request.form.get('file')
+            
+                    except :
+                        return '出现BUG，请反馈'
+                    #api.admin.writeaddress(web,sub)
+                    api.admin.writefile(content,fileadd)
+                    return render_template('admin.html',content=content,file=fileadd)          
+            if  request.form['submit'] == '重启后端' :
+                s = request.form['passwd']     
+                if api.aff.passwd == s:
+                    os.system('pkill subconverter')
+            if  request.form['submit'] == '重启前端' :
+                s = request.form['passwd']     
+                if api.aff.passwd == s:
+                    os.system('pkill python3')
         return render_template('admin.html')
     except Exception as e:
         return e
