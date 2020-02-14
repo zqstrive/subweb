@@ -39,3 +39,10 @@ def writefile(content,file):             # 自定义规则
     except Exception as e:
         print(e)
         return(e)
+def getfile(file):             # 自定义规则 
+    try: 
+        with open(file, "r",encoding = 'utf-8') as f:
+            return( f.read() )                        
+    except Exception as e:
+        print(e)
+        return(e)

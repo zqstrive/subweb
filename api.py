@@ -341,6 +341,7 @@ def admin():
                         return '出现BUG，请反馈'
                     #api.admin.writeaddress(web,sub)
                     api.admin.writefile(content,fileadd)
+                    content= '文件：'+fileadd+' 内容为：'+api.admin.getfile(fileadd)
                     return render_template('admin.html',content=content,file=fileadd)          
             if  request.form['submit'] == '重启后端' :
                 s = request.form['passwd']     
