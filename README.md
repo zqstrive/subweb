@@ -33,6 +33,55 @@
   想要修改web端口，需修改api.py的main函数
   想要修改sub端口，需修改config/perf.ini中的配置
   ```
+
+  # Docker 运行 By NicoNewBeee 懒人版
+  - 1.安装Docker运行环境： 
+  ```bash
+  docker pull niconewbeee/subweb:admin
+  ```
+  - 2.启动：
+  -p 前端端口号：10086 -p 后端端口号：10010             
+  ```bash 
+  docker run   -d  --privileged=true  --name=subweb --restart=always  -p 10086:10086 -p 10010:10010   niconewbeee/subweb:admin
+  ```
+
+  - 3.登陆管理页面：
+  登陆地址：http://ip:10086/admin             
+  首先修改前后端地址以及管理员密码
+  在内容框复制：
+```bash  
+#全局变量定义
+aff = '不限制机场，规则生成失败，请检测调用格式。STC测试可用，注册地址：bilibili.stchk.cloud/auth/register?code=gzI5'   
+subip = 'http://127.0.0.1:10010'      #默认apiip 是web的端口，在api.py的main函数指定，或者docker的端口指定。  默认subip是 subconverter 的端口，在config/perf.ini 中指定，或者docker的端口指定。
+apiip = 'http://127.0.0.1:10086'      #套CDN后，可以在服务器上整反代，将域名反代到本地运行的端口：http://127.0.0.1:10010 
+passwd = 'admin'
+```
+  在地址框复制：
+```bash
+../api/aff.py
+```
+输入管理员密码:默认为admin，请及时修改
+点击上传，然后点击重启前端（需要再次输入密码）。然后经过最长1分钟后，就能正常使用了。
+
+！！！一定要修改config/pref.ini里的api_access_token=NicoNewBeee，否则别人很容易更改你的默认配置
+
+  - 3.查看日志 
+```bash
+docker logs -f -t --tail 10 subweb
+```
+- 4.停止 
+```bash
+docker stop subweb
+```
+- 5.重启 
+```bash
+docker restart subweb
+```
+- 6.删除 
+```bash
+docker rm -f subweb
+```
+
 # Docker 运行 By NicoNewBeee 自定义修改版
   - 1.安装Docker运行环境： 
   ```bash
