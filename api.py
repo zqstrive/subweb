@@ -188,6 +188,10 @@ def inigroup():
                 sub = urllib.parse.quote(s)
                 try:
                     tool=str(request.values.get('tool'))
+                    custom = request.form['custom1']
+                    encodecustom=urllib.parse.quote(custom)
+                    excustom = request.form['custom2']
+                    encodeexcustom=urllib.parse.quote(excustom)
                     emoji = request.form.get('emoji')
                     if emoji == None:
                         emoji = 'false'
@@ -210,19 +214,19 @@ def inigroup():
                     return '检查远程配置文件是否正确'    
                 if tool == 'surge':
                     if iniflag == 'file':
-                        CustomGroupvmess = '{ip}/sub?target=surge&url={sub}&ruleset={rulesets}&groups={groups}&ver=4&emoji={emoji}&fdn={fdn}'.format(ip=api.aff.subip,sub=str(sub),groups=groups,rulesets=rulesets,emoji=emoji,fdn=fdn)
-                        api2 = 'https://gfwsb.114514.best/sub?target=surge&url={sub}&ruleset={rulesets}&groups={groups}&ver=4&emoji={emoji}&fdn={fdn}'.format(sub=str(sub),groups=groups,rulesets=rulesets,emoji=emoji,fdn=fdn) 
+                        CustomGroupvmess = '{ip}/sub?target=surge&url={sub}&ruleset={rulesets}&groups={groups}&ver=4&emoji={emoji}&fdn={fdn}&include={custom}&exclude={custom2}'.format(ip=api.aff.subip,sub=str(sub),groups=groups,rulesets=rulesets,emoji=emoji,fdn=fdn,custom2=encodeexcustom,custom=encodecustom)
+                        api2 = 'https://gfwsb.114514.best/sub?target=surge&url={sub}&ruleset={rulesets}&groups={groups}&ver=4&emoji={emoji}&fdn={fdn}&include={custom}&exclude={custom2}'.format(sub=str(sub),groups=groups,rulesets=rulesets,emoji=emoji,fdn=fdn,custom2=encodeexcustom,custom=encodecustom) 
                         return render_template('surge.html',sub = s,custom=ini+'\n默认为surge4，参数为为ver=4。',api=CustomGroupvmess,api2=api2)
                     if iniflag == 'url':
-                        CustomGroupvmess = '{ip}/sub?target={tar}&url={sub}&config={config}&ver=4&emoji={emoji}&fdn={fdn}'.format(tar=tool,ip=api.aff.subip,sub=str(sub),config=ini,emoji=emoji,fdn=fdn)
-                        api2 = 'https://gfwsb.114514.best/sub?target={tar}&url={sub}&config={config}&ver=4&emoji={emoji}&fdn={fdn}'.format(tar=tool,sub=str(sub),config=ini,emoji=emoji,fdn=fdn) 
+                        CustomGroupvmess = '{ip}/sub?target={tar}&url={sub}&config={config}&ver=4&emoji={emoji}&fdn={fdn}&include={custom}&exclude={custom2}'.format(tar=tool,ip=api.aff.subip,sub=str(sub),config=ini,emoji=emoji,fdn=fdn,custom2=encodeexcustom,custom=encodecustom)
+                        api2 = 'https://gfwsb.114514.best/sub?target={tar}&url={sub}&config={config}&ver=4&emoji={emoji}&fdn={fdn}&include={custom}&exclude={custom2}'.format(tar=tool,sub=str(sub),config=ini,emoji=emoji,fdn=fdn,custom2=encodeexcustom,custom=encodecustom) 
                         return render_template('surge.html',sub = s,custom=ini+'\n'+'默认为surge4，参数为为ver=4。',api=CustomGroupvmess,api2=api2)                        
                 if iniflag == 'file':
-                    CustomGroupvmess = '{ip}/sub?target={tar}&url={sub}&ruleset={rulesets}&groups={groups}&emoji={emoji}&fdn={fdn}'.format(tar=tool,ip=api.aff.subip,sub=str(sub),groups=groups,rulesets=rulesets,emoji=emoji,fdn=fdn)
-                    api2 = 'https://gfwsb.114514.best/sub?target={tar}&url={sub}&ruleset={rulesets}&groups={groups}&emoji={emoji}&fdn={fdn}'.format(tar=tool,sub=str(sub),groups=groups,rulesets=rulesets,emoji=emoji,fdn=fdn) 
+                    CustomGroupvmess = '{ip}/sub?target={tar}&url={sub}&ruleset={rulesets}&groups={groups}&emoji={emoji}&fdn={fdn}&include={custom}&exclude={custom2}'.format(tar=tool,ip=api.aff.subip,sub=str(sub),groups=groups,rulesets=rulesets,emoji=emoji,fdn=fdn,custom2=encodeexcustom,custom=encodecustom)
+                    api2 = 'https://gfwsb.114514.best/sub?target={tar}&url={sub}&ruleset={rulesets}&groups={groups}&emoji={emoji}&fdn={fdn}&include={custom}&exclude={custom2}'.format(tar=tool,sub=str(sub),groups=groups,rulesets=rulesets,emoji=emoji,fdn=fdn,custom2=encodeexcustom,custom=encodecustom) 
                 if iniflag == 'url':
-                    CustomGroupvmess = '{ip}/sub?target={tar}&url={sub}&config={config}&emoji={emoji}&fdn={fdn}'.format(tar=tool,ip=api.aff.subip,sub=str(sub),config=ini,emoji=emoji,fdn=fdn)
-                    api2 = 'https://gfwsb.114514.best/sub?target={tar}&url={sub}&config={config}&emoji={emoji}&fdn={fdn}'.format(tar=tool,sub=str(sub),config=ini,emoji=emoji,fdn=fdn) 
+                    CustomGroupvmess = '{ip}/sub?target={tar}&url={sub}&config={config}&emoji={emoji}&fdn={fdn}&include={custom}&exclude={custom2}'.format(tar=tool,ip=api.aff.subip,sub=str(sub),config=ini,emoji=emoji,fdn=fdn,custom2=encodeexcustom,custom=encodecustom)
+                    api2 = 'https://gfwsb.114514.best/sub?target={tar}&url={sub}&config={config}&emoji={emoji}&fdn={fdn}&include={custom}&exclude={custom2}'.format(tar=tool,sub=str(sub),config=ini,emoji=emoji,fdn=fdn,custom2=encodeexcustom,custom=encodecustom) 
                 return render_template('{tool}.html'.format(tool=tool),sub = s,custom=ini,api=CustomGroupvmess,api2=api2)
             else:
                 return '订阅不规范'

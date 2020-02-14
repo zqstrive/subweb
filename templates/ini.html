@@ -25,9 +25,12 @@
                         <label>请在</label>
                         <a href="https://raw.githubusercontent.com/lzdnico/SSRClash/master/config/default.ini">示例</a>
                         <label>基础上修改。关键字（;设置分组标志位，;设置规则标志位）不可删除</label>
-                        <div class="card" align="center">
+                        <h4>配置文件</h4>
                         <textarea  name = "ini" cols="70" rows="5" placeholder="https://github.com/lzdnico/subconverteriniexample/blob/master/customcountry.ini" >{{ custom  }}</textarea> 
-                        </div>                                                                                
+                        <h4>需要包含的节点</h4>
+                        <textarea  name = "custom1" cols="70" rows="5" id="custom" placeholder="节点名称关键字，支持正则" >{{ custom1  }}</textarea>  
+                        <h4>需要去掉的节点</h4>   
+                        <textarea  name = "custom2" cols="70" rows="5" id="custom" placeholder="节点名称关键字，支持正则" >{{ custom2 }}</textarea>                                                                                 
             </div>
 
             <div class="card" >
