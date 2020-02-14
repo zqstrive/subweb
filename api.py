@@ -14,6 +14,7 @@ import codecs
 import api.subconverter
 import api.aff
 import api.getini
+import api.admin
 from flask import Flask,render_template,request
 urllib3.disable_warnings()
 
@@ -320,5 +321,29 @@ def ruleset():
         return render_template('ruleset.html')
     except Exception as e:
         return e
+
+@app.route('/admin', methods=['GET', 'POST'])
+def admin():
+    try:
+        if request.method == "POST":
+            s = request.form['passwd']     
+            if api.aff.passwd == s:
+                try:
+                    #web = request.form['web']                    
+                    #sub = request.form['sub']               
+                    content = request.form.get('content')
+                    fileadd = request.form.get('file')
+           
+                except :
+                    return '出现BUG，请反馈'
+                #api.admin.writeaddress(web,sub)
+                api.admin.writefile(content,fileadd)
+                return render_template('admin.html',content=content,file=fileadd)              
+            else:
+                return '密码错误'
+        return render_template('admin.html')
+    except Exception as e:
+        return e
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0',debug=False,port=10086)            #自定义端口
