@@ -27,23 +27,7 @@
   cd /root/subweb 
   ./subweb.sh 
   ```
-  - 5.登陆管理页面：
-  
-    详情看Docker运行懒人版第三步
-
-  # Docker 运行 By NicoNewBeee 懒人版
-  - 1.安装Docker运行环境： 
-  ```bash
-  docker pull niconewbeee/subweb:admin
-  ```
-  - 2.启动：
-  
-  -p 前端端口号：10086 -p 后端端口号：10010             
-  ```bash 
-  docker run   -d  --privileged=true  --name=subweb --restart=always  -p 10086:10086 -p 10010:10010   niconewbeee/subweb:admin
-  ```
-
-  - 3.登陆管理页面：登陆地址：http://ip:10086/admin             
+  - 5.登陆管理页面：登陆地址：http://ip:10086/admin             
 
     ！！！修改前后端地址以及管理员密码，在内容框复制：
 ```bash  
@@ -60,27 +44,9 @@ passwd = 'admin'
 
     管理员密码默认为admin。点击上传，然后点击重启前端（需要再次输入密码）。然后经过最长1分钟后，就能正常使用了。
 
-    ！！！一定要修改config/pref.ini里的api_access_token=NicoNewBeee，否则别人很容易更改你的默认配置。修改后重启后端即可
+    ！！！一定要修改config/pref.ini里的【api_access_token】，以及【managed_config_prefix】
 
-- 3.查看日志 
-
-```bash
-docker logs -f -t --tail 10 subweb
-```
-- 4.停止 
-```bash
-docker stop subweb
-```
-- 5.重启 
-```bash
-docker restart subweb
-```
-- 6.删除 
-```bash
-docker rm -f subweb
-```
-
-# Docker 运行 By NicoNewBeee 自定义修改版
+# Docker 运行 By NicoNewBeee 
   - 1.安装Docker运行环境： 
   ```bash
   docker pull niconewbeee/subweb:basic
@@ -90,24 +56,19 @@ docker rm -f subweb
   cd 
   git clone https://github.com/lzdnico/subweb.git 
   ```
-  - 3.客制化（必须修改）：
+  - 3.客制化：
   ```bash 
   chmod 777 /root/subweb/config/subconverter                  修改后端权限
   chmod 777 /root/subweb/docker.sh                            修改启动脚本权限
-  修改api/aff.py                                               subip 和 apiip 分别为docker映射前的前端地址和后端地址 
-  ```
-  - 4.客制化（可选）：
-  ```bash 
-  修改config/perf.ini                                          端口10010不用修改，可以通过docker映射自定义访问端口
-  修改templates                                                文件下的网页html
   ```
   - 5.开始运行：
   -p 前端端口号：10086 -p 后端端口号：10010                      这个前/后端端口号需要与api/aff.py中的一致
   ```bash 
   docker run  -d --name=subweb --restart=always -v /root/subweb:/subweb -p 10086:10086 -p 10010:10010  niconewbeee/subweb:basic
   ```
-  - 6.太复杂？：
-  看看subweb/docker 文件下的update.sh 可以一键更新最新代码，并一键覆盖自定义修改内容。
+  - 6.管理地址
+
+    用法看 环境搭建及运行第5步
 
   - 7.查看日志 
 ```bash
@@ -126,8 +87,10 @@ docker restart subweb
 docker rm -f subweb
 ```
 
-- 11.管理地址 
-用法看懒人版第三步
+- 11.如何同步最新源码 
+```bash
+重复2，3，9
+```
 
 # Docker 运行 By du5 (旧版)
 > https://docker.io/gtary/subweb build by [@du5](https://t.me/Gtary)
