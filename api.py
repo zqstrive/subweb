@@ -235,7 +235,6 @@ def inigroup():
     except Exception as e:
         return e
 
-
 @app.route('/list', methods=['GET', 'POST'])
 def lists():
     try:
@@ -328,33 +327,38 @@ def ruleset():
     except Exception as e:
         return e
 
+@app.route('/help', methods=['GET', 'POST'])
+def help():
+    try:
+        content= api.admin.getfile('help.txt')
+        return render_template('content.html',content='帮助文档：\n\n\n'+content)
+    except Exception as e:
+        return '无帮助文档，请使用管理系统上传帮助文档到help.txt'
+
 @app.route('/admin', methods=['GET', 'POST'])
 def admin():
     try:
         if request.method == "POST":
-            if request.form['submit'] == '上传配置':
-                s = request.form['passwd']     
-                if api.aff.passwd == s:
-                    try:
-                        #web = request.form['web']                    
-                        #sub = request.form['sub']               
-                        content = request.form.get('content')
-                        fileadd = request.form.get('file')
-            
-                    except :
-                        return '出现BUG，请反馈'
-                    #api.admin.writeaddress(web,sub)
+            s = request.form['passwd']
+            if api.aff.passwd == s:
+                if request.form['submit'] == '上传配置':               
+                    content = request.form.get('content')
+                    fileadd = request.form.get('file')              
                     api.admin.writefile(content,fileadd)
                     content= api.admin.getfile(fileadd)
-                    return render_template('admin.html',content=content,file=fileadd)          
-            if  request.form['submit'] == '重启后端' :
-                s = request.form['passwd']     
-                if api.aff.passwd == s:
+                    return render_template('content.html',content='上传成功：\n\n\n'+content)  
+                if request.form['submit'] == '查看配置': 
+                    fileadd = request.form.get('file')              
+                    content= api.admin.getfile(fileadd)
+                    return render_template('content.html',content='查看成功：\n\n\n'+content)         
+                if  request.form['submit'] == '重启后端' :
                     os.system('pkill subconverter')
-            if  request.form['submit'] == '重启前端' :
-                s = request.form['passwd']     
-                if api.aff.passwd == s:
+                    return '重启后端成功！！！'
+                if  request.form['submit'] == '重启前端' :
                     os.system('pkill python3')
+                    return '重启前端成功！！！'
+            else:
+                return '密码错误'
         return render_template('admin.html')
     except Exception as e:
         return e

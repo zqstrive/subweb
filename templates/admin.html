@@ -22,25 +22,19 @@
 
 
             <div class="card" >
-                <h2>🤡 1.配置</h2>
+                <h2>🤡 后台管理系统</h2>
                 <h4>内容</h4>
                 <textarea  name = "content" cols="70" rows="5" id="custom" placeholder="配置文件内容"" >{{ content  }}</textarea>  
                 <h4>地址</h4>   
                 <textarea  name = "file" cols="70" rows="5" id="custom" placeholder="配置文件地址   ../api/aff.py    or   ../config/pref.ini   or  ../templates/login.html" >{{ file }}</textarea>                      
-            </div>
-
-            <div class="card" >
-                <h2>🤡 2.管理密码</h2> 
-                <textarea  name = "passwd" cols="70" rows="5" id="custom" placeholder="/api/aff.py  中的passwd参数" >{{ passwd }}</textarea>                      
-            </div>
-
-            <div class="card" >
-                <h2> 👌 3.上传</h2>
-            <div style="text-align:center; vertical-align:middel;">
-                <input  type="submit" class="card" name= 'submit' value = "上传配置""/>
-                <input  type="submit" class="card" name= 'submit' value = "重启后端""/>
-                <input  type="submit" class="card" name= 'submit' value = "重启前端""/>
-            </div>
+                <h4>密码</h4>
+                <textarea  name = "passwd" cols="70" rows="5" id="custom" placeholder="/api/aff.py  中的passwd参数" >{{ passwd }}</textarea>
+                <div style="text-align:center; vertical-align:middel;">
+                    <input  type="submit" class="card" name= 'submit' value = "上传配置""/>
+                    <input  type="submit" class="card" name= 'submit' value = "查看配置""/>
+                    <input  type="submit" class="card" name= 'submit' value = "重启后端""/>
+                    <input  type="submit" class="card" name= 'submit' value = "重启前端""/>
+                </div>
             </div>
                            
         </form>          
