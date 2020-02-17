@@ -346,11 +346,11 @@ def admin():
                     fileadd = request.form.get('file')              
                     api.admin.writefile(content,fileadd)
                     content= api.admin.getfile(fileadd)
-                    return render_template('content.html',content='上传成功：\n\n\n'+content)  
+                    return render_template('content.html',content='上传成功！！！\n'+content)  
                 if request.form['submit'] == '查看配置': 
                     fileadd = request.form.get('file')              
                     content= api.admin.getfile(fileadd)
-                    return render_template('content.html',content='查看成功：\n\n\n'+content)         
+                    return render_template('content.html',content='查看成功！！！\n'+content)         
                 if  request.form['submit'] == '重启后端' :
                     os.system('pkill subconverter')
                     return '重启后端成功！！！'
