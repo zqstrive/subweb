@@ -92,7 +92,9 @@ docker rm -f subweb
 
 - 11.如何同步最新源码 
 ```bash
-重复2，3，9
+rm -rf /root/subconverter
+重复2，3，9，6
+或者看看docker/update.sh 找找灵感？
 ```
 
 # Docker 运行 By du5 (旧版)
