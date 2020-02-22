@@ -114,8 +114,8 @@ def getgroups(name,custom,method):             # 自定义规则
                                         '@🎥 NETFLIX`select`[]🔰 节点选择`'+groupname+'[]DIRECT'\
                                         '@📺 巴哈姆特`select`[]🔰 节点选择`'+groupname+'[]DIRECT'\
                                         '@🌍 国外媒体`select`[]🔰 节点选择`'+groupname+'[]DIRECT'\
-                                        '@Ⓜ️ 微软服务`select`[]DIRECT`[]🔰 节点选择`'+groupname\
-                                        '@🍎 苹果服务`select`[]DIRECT`[]🔰 节点选择`'\
+                                        '@Ⓜ️ 微软服务`select`[]DIRECT`[]🔰 节点选择`'+groupname+''\
+                                        '@🍎 苹果服务`select`[]DIRECT`[]🔰 节点选择`'+groupname+''\
                                         '@🛑 全球拦截`select`[]REJECT`[]DIRECT'\
                                         '@🐟 漏网之鱼`select`[]🔰 节点选择`[]DIRECT`'+groupname+''
 
