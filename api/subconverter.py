@@ -96,17 +96,17 @@ def getgroups(name,custom,method):             # 自定义规则
                         groupname = '`'
                         for i in range(1,len(groups)):
                             if methods[i] == 'sl':
-                                inigroup += '@'+str(names[i])+'手动选择`select`'+str(groups[i])+''
-                                groupname += '[]'+str(names[i])+'手动选择`'
+                                inigroup += '@'+str(names[i])+'`select`'+str(groups[i])+''
+                                groupname += '[]'+str(names[i])+'`'
                             if methods[i] == 'ut':
-                                inigroup += '@'+str(names[i])+'延迟最低`url-test`'+str(groups[i])+'`http://www.gstatic.com/generate_204`500'
-                                groupname += '[]'+str(names[i])+'延迟最低`'
+                                inigroup += '@'+str(names[i])+'`url-test`'+str(groups[i])+'`http://www.gstatic.com/generate_204`500'
+                                groupname += '[]'+str(names[i])+'`'
                             if methods[i] == 'fb':
-                                inigroup += '@'+str(names[i])+'故障切换`fallback`'+str(groups[i])+'`http://www.gstatic.com/generate_204`500'
-                                groupname += '[]'+str(names[i])+'故障切换`'
+                                inigroup += '@'+str(names[i])+'`fallback`'+str(groups[i])+'`http://www.gstatic.com/generate_204`500'
+                                groupname += '[]'+str(names[i])+'`'
                             if methods[i] == 'lb':
-                                inigroup += '@'+str(names[i])+'负载均衡`load-balance`'+str(groups[i])+'`http://www.gstatic.com/generate_204`500'
-                                groupname += '[]'+str(names[i])+'负载均衡`'
+                                inigroup += '@'+str(names[i])+'`load-balance`'+str(groups[i])+'`http://www.gstatic.com/generate_204`500'
+                                groupname += '[]'+str(names[i])+'`'
 
                         proxygroup =   '@🔰 节点选择`select'+groupname+'[]DIRECT'\
                                         '@📲 电报吹水`select`[]🔰 节点选择`'+groupname+'[]DIRECT'\
