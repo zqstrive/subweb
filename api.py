@@ -346,10 +346,10 @@ def ruleset():
 @app.route('/help', methods=['GET', 'POST'])
 def help():
     try:
-        content= api.admin.getfile('help.txt')
+        content= api.admin.getfile('../help.txt')
         return render_template('content.html',content='帮助文档：\n\n\n'+content)
     except Exception as e:
-        return '无帮助文档，请使用管理系统上传帮助文档到help.txt'
+        return '无帮助文档，请使用管理系统上传帮助文档到../help.txt'
 
 @app.route('/admin', methods=['GET', 'POST'])
 def admin():
@@ -371,7 +371,7 @@ def admin():
                     os.system('pkill subconverter')
                     return '重启后端成功！！！'
                 if  request.form['submit'] == '重启前端' :
-                    os.system('pkill python3')
+                    os.system('pkill -9 -f api.py')
                     return '重启前端成功！！！'
             else:
                 return '密码错误'
