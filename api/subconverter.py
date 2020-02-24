@@ -8,7 +8,7 @@ import  urllib
 import  json
 import  time
 import codecs
-#import  api.aff
+import  api.aff
 urllib3.disable_warnings()
 def Retry_request(url): #远程下载
     i = 0
@@ -20,7 +20,7 @@ def Retry_request(url): #远程下载
             i = i+1
     return 'erro'
 
-def writeini(name,custom,method,ini):             # 自定义规则   
+def writeini(name,custom,method,ini):             # 自定义规则,历史脚本，不起作用
     try:
         if ini == '' or ini == None:
             if custom == '' or custom == None:   #不分组的情况
@@ -83,7 +83,7 @@ def writeini(name,custom,method,ini):             # 自定义规则
         print(e)
 
 
-def getgroups(name,custom,method):             # 自定义规则   
+def getgroups(name,custom,method):             # 节点分组相关函数 
     try:
             if custom == '' or custom == None:   #不分组的情况
                 return ''          
@@ -107,18 +107,7 @@ def getgroups(name,custom,method):             # 自定义规则
                             if methods[i] == 'lb':
                                 inigroup += '@'+str(names[i])+'`load-balance`'+str(groups[i])+'`http://www.gstatic.com/generate_204`500'
                                 groupname += '[]'+str(names[i])+'`'
-
-                        proxygroup =   '@🔰 节点选择`select'+groupname+'[]DIRECT'\
-                                        '@📲 电报吹水`select`[]🔰 节点选择`'+groupname+'[]DIRECT'\
-                                        '@📹 YouTube`select`[]🔰 节点选择`'+groupname+'[]DIRECT'\
-                                        '@🎥 NETFLIX`select`[]🔰 节点选择`'+groupname+'[]DIRECT'\
-                                        '@📺 巴哈姆特`select`[]🔰 节点选择`'+groupname+'[]DIRECT'\
-                                        '@🌍 国外媒体`select`[]🔰 节点选择`'+groupname+'[]DIRECT'\
-                                        '@Ⓜ️ 微软服务`select`[]DIRECT`[]🔰 节点选择`'+groupname+''\
-                                        '@🍎 苹果服务`select`[]DIRECT`[]🔰 节点选择`'+groupname+''\
-                                        '@🛑 全球拦截`select`[]REJECT`[]DIRECT'\
-                                        '@🐟 漏网之鱼`select`[]🔰 节点选择`[]DIRECT`'+groupname+''
-
+                        proxygroup = api.aff.proxygroup.format(groupname=groupname)
                         inicustom = proxygroup+inigroup                
                         return inicustom                         
     except Exception as e:
