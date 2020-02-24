@@ -3,7 +3,7 @@ echo "-----------------------------------Start----------------------------------
 echo "------------------------------------While循环----------------------------------------"
 while true
 do
-    proc_name="subconverter"        #进程名
+    proc_name="subconverter"        #subconverter进程名
     proc_num()                      #查询进程数量
     {
         num=`ps -ef | grep $proc_name | grep -v grep | wc -l`
@@ -16,7 +16,7 @@ do
         cd /subweb/config
         ./subconverter &
     fi
-    proc_name="python3"        #进程名
+    proc_name="api.py"              #api.py进程名
     proc_num()                      #查询进程数量
     {
         num=`ps -ef | grep $proc_name | grep -v grep | wc -l`
