@@ -1,18 +1,7 @@
 #! /bin/sh 
 echo "-----------------------------------Start-------------------------------------"
-echo "-----------------------------------$1,$2------------------------"
-filename="/root/subweb/api/aff.py"
-cat>"${filename}"<<EOF
-aff = '不限制机场，规则生成失败，请检测调用格式。STC测试可用，注册地址：bilibili.stchk.cloud/auth/register?code=gzI5'   
-apiip = '$1'
-subip = '$2'   
-passwd = 'admin'            
-EOF
-cat /root/subweb/api/aff.py
 chmod 777 /root/subweb/config/subconverter
-echo "-----------------------------------Update file----------------------------------------"
 echo "-------------------------------------While--------------------------------------------"
-
 while true
 do
     proc_name="subconverter"        #进程名
