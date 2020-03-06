@@ -67,7 +67,7 @@ proxygroup= '@🔰 节点选择`select{groupname}[]DIRECT'\
   - 2.下载源码：
   ```bash
   cd 
-  git clone https://github.com/lzdnico/subweb.git 
+  git clone -b admin https://github.com/lzdnico/subweb.git
   ```
   - 3.客制化：
   ```bash 
