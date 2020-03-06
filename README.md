@@ -14,7 +14,7 @@
   - 2.下载源码：
   ```bash
   cd 
-  git clone https://github.com/lzdnico/subweb.git 
+ git clone -b admin https://github.com/lzdnico/subweb.git
   ```
   - 3.安装库： 
   ```bash
